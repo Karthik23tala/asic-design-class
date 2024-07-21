@@ -33,10 +33,10 @@ The code shows the output same as that of C compilation and GCC compilation
 
 We can also compile the code using Spike simulator instruction by instruction with the following command:
 
-'''
+```
 spike -d pk sum1ton.o
 until pc 0 100b0
-'''
+```
 
 The contents in the register a0 can be viewed with the following command:
 
