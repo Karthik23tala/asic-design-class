@@ -1,4 +1,4 @@
-#Lab 1
+# Lab 1
 
 # ASIC Lab 1 Report (16/07/2024)
 ## Problem Statement
@@ -101,7 +101,7 @@ Contents of sp register after command execution:
 
 ![Screenshot from 2024-07-21 22-30-17](https://github.com/user-attachments/assets/498088dd-0ef8-4dea-8819-5eef236472f8)
 
-#Lab 3
+# Lab 3
 
 ### Task 1: Identifying and Decoding the RISCV Instructions
 
