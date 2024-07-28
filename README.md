@@ -1,10 +1,10 @@
 # Lab 1
 
-# ASIC Lab 1 Report (16/07/2024)
-## Problem Statement
+## ASIC Lab 1 Report (16/07/2024)
+### Problem Statement
 Compile program for sum from 1 to n using c and riscv compiler
 
-### Task 1: Compile the program in C using GCC
+#### Task 1: Compile the program in C using GCC
 
 Code:
 ```
@@ -25,7 +25,7 @@ Output:
 
 <img width="960" alt="image" src="https://github.com/user-attachments/assets/c82850ee-7320-4c40-b218-3f1710f3dd8e">
 
-### Task 2: Compile the program in C using RISC-V compiler
+#### Task 2: Compile the program in C using RISC-V compiler
 
 Output: For O1
 
@@ -41,12 +41,12 @@ Output: For OFast
 
 # Lab 2
 
-# ASIC Lab 2 Report (19/07/2024)
+## ASIC Lab 2 Report (19/07/2024)
 
-## Problem Statement
+### Problem Statement
 Compile the C code using Spike Simulator
 
-### Task: Compile the C code using Spike Simulator instruction by instruction
+#### Task: Compile the C code using Spike Simulator instruction by instruction
 Code:
 
 ```
@@ -103,7 +103,12 @@ Contents of sp register after command execution:
 
 # Lab 3
 
-### Task 1: Identifying and Decoding the RISCV Instructions
+## ASIC Lab 3 Report (22/07/2024)
+
+### Problem Statement
+Decoding the RISCV Instructions and Plotting in GTK Wave
+
+#### Task 1: Identifying and Decoding the RISCV Instructions
 
 ```
 
