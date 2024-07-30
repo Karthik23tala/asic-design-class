@@ -5,8 +5,8 @@
 ### Problem Statement
 Decoding the RISCV Instructions and Plotting in GTK Wave
 
-#### Task 1: Identifying and Decoding the RISCV Instructions
-
+### Task 1: Identifying and Decoding the RISCV Instructions
+____________________________________________________________________________________________________________________
 ```
 
 ADD r0, r1, r2
@@ -41,7 +41,9 @@ SLL r05, r01, r1
 | LW r13, r11, 2  | I    | 0000011 | -    | 01011 | -      | 010   | 01101 | 000000000010       | 0x002B0323 |
 | SLL r15, r11, r2| R    | 0110011 | 00010 | 01011 | 0000000 | 001   | 01111 | -                  | 0x000B5B33 |
 
-Task 2: Plotting instructions in GTK Wave
+### Task 2: Plotting instructions in GTK Wave
+____________________________________________________________________________________________________________________
+
 
 Code:
 
