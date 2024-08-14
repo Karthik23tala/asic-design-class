@@ -1,4 +1,6 @@
-# Lab 1
+<details>
+<summary>Lab 1</summary>
+<br>
 
 ## ASIC Lab 1 Report (16/07/2024)
 ### Problem Statement
@@ -37,7 +39,7 @@ Output: For OFast
 
 
 <img width="960" alt="image" src="https://github.com/user-attachments/assets/80d9f58b-c041-41d9-bd8b-27b8de803d7b">
-
+</details>
 
 # Lab 2
 
