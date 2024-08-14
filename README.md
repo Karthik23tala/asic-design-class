@@ -15,7 +15,7 @@ Compile program for sum from 1 to n using c and riscv compiler
 #### Task 1: Compile the program in C using GCC
 
 Code:
-```
+```c
 
 #include <stdio.h>
 
@@ -59,7 +59,7 @@ Compile the C code using Spike Simulator
 #### Task: Compile the C code using Spike Simulator instruction by instruction
 Code:
 
-```
+```c
 
 #include <stdio.h>
 
@@ -324,19 +324,19 @@ SLL r15, r11, r2
 
 | Instruction  | Type | Opcode | rs2  | rs1  | funct7 | funct3 | rd   | imm                | 32-bit Instruction Code |
 |--------------|------|--------|------|------|--------|--------|------|--------------------|--------------------------|
-| ADD r1, r2, r3  | R    | 0110011 | 00011 | 00010 | 0000000 | 000   | 00001 | -                  | 0x000282B3 |
-| SUB r3, r1, r2  | R    | 0110011 | 00010 | 00001 | 0100000 | 000   | 00011 | -                  | 0x400282B3 |
-| AND r2, r1, r3  | R    | 0110011 | 00011 | 00001 | 0000000 | 111   | 00010 | -                  | 0x00C30333 |
-| OR r8, r2, r5   | R    | 0110011 | 00101 | 00010 | 0000000 | 110   | 01000 | -                  | 0x0002B233 |
-| XOR r8, r1, r4  | R    | 0110011 | 00100 | 00001 | 0000000 | 100   | 01000 | -                  | 0x0001B233 |
-| SLT r10, r2, r4 | R    | 0110011 | 00100 | 00010 | 0000000 | 010   | 01010 | -                  | 0x0002A233 |
-| ADDI r12, r3, 5 | I    | 0010011 | -    | 00011 | -      | 000   | 01100 | 000000000101       | 0x00530313 |
-| SW r3, r1, 4    | S    | 0100011 | 00011 | 00001 | -      | 010   | -    | 000000000100       | 0x00412123 |
-| SRL r16, r11, r2| R    | 0110011 | 00010 | 01011 | 0000000 | 101   | 10000 | -                  | 0x000B9313 |
-| BNE r0, r1, 20  | B    | 1100011 | -    | 00001 | -      | 001   | -    | 000000000101       | 0x00514163 |
-| BEQ r0, r0, 15  | B    | 1100011 | -    | 00000 | -      | 000   | -    | 000000000111       | 0x00700063 |
-| LW r13, r11, 2  | I    | 0000011 | -    | 01011 | -      | 010   | 01101 | 000000000010       | 0x002B0323 |
-| SLL r15, r11, r2| R    | 0110011 | 00010 | 01011 | 0000000 | 001   | 01111 | -                  | 0x000B5B33 |
+|  `ADD r1, r2, r3`  | R    | 0110011 | 00011 | 00010 | 0000000 | 000   | 00001 | -                  | 0x000282B3 |
+|  `SUB r3, r1, r2` | R    | 0110011 | 00010 | 00001 | 0100000 | 000   | 00011 | -                  | 0x400282B3 |
+|  `AND r2, r1, r3`  | R    | 0110011 | 00011 | 00001 | 0000000 | 111   | 00010 | -                  | 0x00C30333 |
+|  `OR r8, r2, r5`   | R    | 0110011 | 00101 | 00010 | 0000000 | 110   | 01000 | -                  | 0x0002B233 |
+|  `XOR r8, r1, r4`  | R    | 0110011 | 00100 | 00001 | 0000000 | 100   | 01000 | -                  | 0x0001B233 |
+|  `SLT r10, r2, r4` | R    | 0110011 | 00100 | 00010 | 0000000 | 010   | 01010 | -                  | 0x0002A233 |
+|  `ADDI r12, r3, 5` | I    | 0010011 | -    | 00011 | -      | 000   | 01100 | 000000000101       | 0x00530313 |
+|  `SW r3, r1, 4`    | S    | 0100011 | 00011 | 00001 | -      | 010   | -    | 000000000100       | 0x00412123 |
+|  `SRL r16, r11, r2` | R    | 0110011 | 00010 | 01011 | 0000000 | 101   | 10000 | -                  | 0x000B9313 |
+|  `BNE r0, r1, 20`  | B    | 1100011 | -    | 00001 | -      | 001   | -    | 000000000101       | 0x00514163 |
+|  `BEQ r0, r0, 15`  | B    | 1100011 | -    | 00000 | -      | 000   | -    | 000000000111       | 0x00700063 |
+|  `LW r13, r11, 2`  | I    | 0000011 | -    | 01011 | -      | 010   | 01101 | 000000000010       | 0x002B0323 |
+|  `SLL r15, r11, r2` | R    | 0110011 | 00010 | 01011 | 0000000 | 001   | 01111 | -                  | 0x000B5B33 |
 
 Below is the tabulated difference between standard and hardcoded ISA instruction
 
@@ -422,5 +422,107 @@ Instruction 10: SLL R15, R1, R2
 ```
 
 <img width="468" alt="Picture10" src="https://github.com/user-attachments/assets/aabc447d-a331-4141-88cb-45a6b68f9134">
+
+</details>
+
+
+<details>
+<summary>Lab 4</summary>
+<br>
+
+# ASIC Lab 4 Report (13/08/2024)
+
+## Problem Statement
+
+Compile program for EMI Calculator using C and RISCV compiler
+
+****1 . Compilation in C****
+
+**Step 1**: Write the C program in Leafpad editor in Ubuntu using the following command
+
+```
+leafpad emicalculator.c &
+```
+
+
+Code:
+```c
+#include <stdio.h>
+#include <math.h>
+
+// Function to calculate EMI
+double calculateEMI(double principal, double annualInterestRate, int tenureInYears) {
+    double monthlyInterestRate = annualInterestRate / (12 * 100); 
+    // Annual rate to monthly and percentage to fraction
+    int tenureInMonths = tenureInYears * 12;
+    double EMI;
+
+    EMI = (principal * monthlyInterestRate * pow(1 + monthlyInterestRate, tenureInMonths)) / 
+          (pow(1 + monthlyInterestRate, tenureInMonths) - 1);
+
+    return EMI;
+}
+
+int main() {
+    double principal, annualInterestRate, EMI;
+    int tenureInYears;
+
+    // User inputs for principal, interest rate, and tenure
+    printf("Enter the principal loan amount: ");
+    scanf("%lf", &principal);
+    
+    printf("Enter the annual interest rate (in percentage): ");
+    scanf("%lf", &annualInterestRate);
+    
+    printf("Enter the tenure of the loan (in years): ");
+    scanf("%d", &tenureInYears);
+
+    // Calculate EMI
+    EMI = calculateEMI(principal, annualInterestRate, tenureInYears);
+
+    // Display the EMI result
+    printf("Your monthly EMI is: %.2lf\n", EMI);
+
+    return 0;
+}
+```
+
+**Step 2**: Compile the C program using in Compiler using the following command in Ubuntu
+```
+gcc emicalculator.c -o emicalculator  -lm
+```
+
+In this command we have used ```-lm``` to use ```<math.h>``` library file in C.
+
+**Step 3**: Run the C program with the below command
+```
+./emicalculator
+```
+
+The above program takes input of Principal Amount, Annual Rate of Interest and Tenure in years. Post the required inputs, it provides the EMI amount that needs to be paid.
+
+Below is the snapshot of an example for the same.
+
+![1](https://github.com/user-attachments/assets/c0d1bdc7-896f-414f-abeb-e721a5742f68)
+
+****2 . Compilation in RISCV****
+
+**Step 1**: We need to run the same .C file as in the previous case but in the RISCV with the following command
+```
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i emicalculator.c -lm
+```
+
+Similar to the previous case, we have used ```-lm``` to use ```<math.h>``` library file in C.
+
+**Step 2**: Run the program in SPIKE simulator with the help of the below command
+```
+spike pk a.out
+```
+
+The above program takes input of Principal Amount, Annual Rate of Interest and Tenure in years. Post the required inputs, it provides the EMI amount that needs to be paid.
+
+Below is the snapshot of an example for the same.
+
+![2](https://github.com/user-attachments/assets/7d07f191-9aff-4853-a6ff-a83bf72848e0)
 
 </details>
