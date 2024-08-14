@@ -41,7 +41,9 @@ Output: For OFast
 <img width="960" alt="image" src="https://github.com/user-attachments/assets/80d9f58b-c041-41d9-bd8b-27b8de803d7b">
 </details>
 
-# Lab 2
+<details>
+<summary>Lab 2</summary>
+<br>
 
 ## ASIC Lab 2 Report (19/07/2024)
 
@@ -103,7 +105,11 @@ Contents of sp register after command execution:
 
 ![Screenshot from 2024-07-21 22-30-17](https://github.com/user-attachments/assets/498088dd-0ef8-4dea-8819-5eef236472f8)
 
-# Lab 3
+</details>
+
+<details>
+<summary>Lab 3</summary>
+<br>
 
 ## ASIC Lab 3 Report (22/07/2024)
 
@@ -404,7 +410,7 @@ Instruction 9: BNE R0, R1, 20
 ```
 
 <img width="468" alt="Picture9" src="https://github.com/user-attachments/assets/c70be765-5704-4145-9a23-de594864d218">
-
+</details>
 ```
 Instruction 10: SLL R15, R1, R2
 ```
