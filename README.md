@@ -1,3 +1,9 @@
+# ASIC Design 
+
+<tr></tr>
+
+This is the GitHub repository for ASIC Design Class Lab Sessions.
+
 <details>
 <summary>Lab 1</summary>
 <br>
