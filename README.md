@@ -410,9 +410,11 @@ Instruction 9: BNE R0, R1, 20
 ```
 
 <img width="468" alt="Picture9" src="https://github.com/user-attachments/assets/c70be765-5704-4145-9a23-de594864d218">
-</details>
+
 ```
 Instruction 10: SLL R15, R1, R2
 ```
 
 <img width="468" alt="Picture10" src="https://github.com/user-attachments/assets/aabc447d-a331-4141-88cb-45a6b68f9134">
+
+</details>
