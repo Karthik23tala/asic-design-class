@@ -526,3 +526,360 @@ Below is the snapshot of an example for the same.
 ![2](https://github.com/user-attachments/assets/7d07f191-9aff-4853-a6ff-a83bf72848e0)
 
 </details>
+
+
+<details>
+<summary>Lab 5</summary>
+<br>
+
+# ASIC Lab 5 Report (15/08/2024)
+
+## Combinational Circuits Implementation
+
+Makerchip is an online IDE in which we can write the code in TL Verilog and simulate to observe the diagram, waveforms and also the visualization.
+
+Below is the snapshot of the IDE.
+
+![Makerchip IDE](https://github.com/user-attachments/assets/44a636e1-33ca-4b92-adb5-3c984f8f0ad7)
+
+The simplest example to implement is an inverter.
+
+Code:
+
+```v
+\m5_TLV_version 1d: tl-x.org
+\m5
+   
+\SV
+   m5_makerchip_module
+\TLV
+   $reset = *reset;
+   $clk_kar = *clk;
+   $out = !$in;
+   
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+\SV
+   endmodule
+```
+
+Output Diagram and Waveform:
+
+![image](https://github.com/user-attachments/assets/84193687-0a2d-4c22-a5ae-a749764f7fab)
+
+We can also implement the fundamental logic gates. For instance, below is the example for XOR gate: 
+
+Code:
+
+```v
+\m5_TLV_version 1d: tl-x.org
+\m5
+   
+\SV
+   m5_makerchip_module
+\TLV
+   $reset = *reset;
+   $clk_kar = *clk;
+   $out = $a ^ $b;
+   
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+\SV
+   endmodule
+```
+
+![image](https://github.com/user-attachments/assets/63fb7773-81c7-4889-a347-f6dc2dd82dd1)
+
+Similarly we can code for other operations as follows: 
+```v
+
+$out = $a ^ $b; // XOR Gate 
+$out = $a & $b; // AND Gate 
+$out = $a | $b; // OR Gate 
+$out = !($a & $b) ; // NAND Gate 
+$out = ($a | $b); // NOR Gate
+
+```
+
+Below is the code and output for the multiplexer circuit.
+
+Code:
+
+```v
+\m5_TLV_version 1d: tl-x.org
+\m5
+   
+\SV
+   m5_makerchip_module
+\TLV
+   $reset = *reset;
+   $clk_kar = *clk;
+   $out = $sel ? $a : $b;
+   
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+\SV
+   endmodule
+```
+
+Output:
+
+![image](https://github.com/user-attachments/assets/f6622d2d-f2ab-4a95-b4a8-d1ec76b6e846)
+
+Similarly we can pass vectors as the inputs in multiplexer as follows: 
+
+Code:
+
+```v
+
+\m5_TLV_version 1d: tl-x.org
+\m5
+   
+\SV
+   m5_makerchip_module
+\TLV
+   $reset = *reset;
+   $clk_kar = *clk;
+   $out[7:0] = $sel ? $a[7:0] : $b[7:0];
+   
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+\SV
+   endmodule
+
+```
+
+Output:
+
+![image](https://github.com/user-attachments/assets/7bda4c15-1647-4506-8e2e-7c97d3354d8e)
+
+Now, below is the implementation of the basic calulator using 4:1 MUX with operand as the select line and the operation results as the inputs. This will result in the circuit as shown below.
+
+![Comb Ckt](https://github.com/user-attachments/assets/76de903c-6a3f-439f-91d0-e815c28c90ce)
+
+Code:
+
+```v
+
+\m5_TLV_version 1d: tl-x.org
+\m5
+
+\SV
+   m5_makerchip_module
+\TLV
+   $reset = *reset;
+   $clk_kar = *clk;
+   
+   $val1[31:0] = $rand1[3:0];
+   $val2[31:0] = $rand2[3:0];
+   
+   $sum[31:0] =  $val1[31:0] +  $val2[31:0];
+   $diff[31:0] =  $val1[31:0] -  $val2[31:0];
+   $prod[31:0] =  $val1[31:0] *  $val2[31:0];
+   $quot[31:0] =  $val1[31:0] /  $val2[31:0];
+   
+   $out[31:0] = $sel[1] ? ($sel[0] ? $quot[31:0] : $prod[31:0])
+                        : ($sel[0] ? $diff[31:0] : $sum[31:0]);
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+\SV
+   endmodule
+```
+
+Output:
+
+![image](https://github.com/user-attachments/assets/f4c66660-5e28-4498-8cb9-9520a481122e)
+
+## Sequential Circuits Implementation
+
+In sequential there is a feedback path from output to input. For instance, in the above calculator example, we can feed the output to value 2 in the circuit. 
+
+![Comb Ckt](https://github.com/user-attachments/assets/c1619151-a30f-4faf-beae-31246dff4fcb)
+
+Below is the code and output waveform:
+
+Code:
+
+```v
+
+\m5_TLV_version 1d: tl-x.org
+\m5
+
+\SV
+   m5_makerchip_module
+\TLV
+   $reset = *reset;
+   $clk_kar = *clk;
+   
+   $val1[31:0] = $rand1[3:0];
+   $val2[31:0] = >>1$out[31:0]; // Here the output is feeded to val2 in the input after 1 clock cycle i.e., the output is reflected in val2 from the next clock cycle
+   $op[1:0] = $rand2[1:0];
+   
+   $sum[31:0] = $val1[31:0] + $val2[31:0];
+   $diff[31:0] = $val1[31:0] - $val2[31:0];
+   $prod[31:0] = $val1[31:0] * $val2[31:0];
+   $quot[31:0] = $val1[31:0] / $val2[31:0];
+   
+   $out[31:0] = $reset ? 32'b0 : (($op[1:0]==2'b00) ? $sum :
+                                       ($op[1:0]==2'b01) ? $diff :
+                                          ($op[1:0]==2'b10) ? $prod : $quot);
+   
+   `BOGUS_USE($out);
+   `BOGUS_USE($reset);
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+\SV
+   endmodule
+
+```
+
+Output: 
+
+![image](https://github.com/user-attachments/assets/b0c09e4b-2fd0-4a90-8e08-a2b08358146d)
+
+Now, with the same shifting logic we can implement a fibonocci sequence circuit as below.
+
+Code:
+
+```v
+
+\m5_TLV_version 1d: tl-x.org
+\m5
+   
+\SV
+   m5_makerchip_module
+\TLV
+   $reset = *reset;
+   $clk_kar = *clk;
+   
+   $num[31:0] = $reset ? 1 : (>>1$num + >>2$num);
+   
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+\SV
+   endmodule
+
+```
+
+Output: 
+
+![image](https://github.com/user-attachments/assets/ef730a0b-3be8-41b9-b2e5-39af9695ce8b)
+
+## Pipelining
+
+Pipelining is a method in TL verilog which helps to code the requirments in much compact form factor as compared to that of system verilog. The primary advantage of such is better readability and error solving.
+
+For instance, the fibonocci can be implemented in pipelining as follows:
+
+Code:
+
+```v
+
+\m5_TLV_version 1d: tl-x.org
+\m5
+   
+\SV
+   m5_makerchip_module
+\TLV
+   $reset = *reset;
+   $clk_kar = *clk;
+   
+   |fib
+      @1
+         $num[31:0] = $reset ? 1 : (>>1$num + >>2$num);
+   
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+\SV
+   endmodule
+
+```
+
+Output:
+
+![image](https://github.com/user-attachments/assets/aaec92b4-aa76-45c8-bdc8-5241c42cb6fd)
+
+In the next example, the basic calculator as implemented above with pipelining as follows.
+
+Code:
+
+```v
+
+\m5_TLV_version 1d: tl-x.org
+\m5
+
+\SV
+   m5_makerchip_module
+\TLV
+   $reset = *reset;
+   $clk_kar = *clk;
+   
+   |calc
+      @1
+         $val1[31:0] = $rand1[3:0];
+         $val2[31:0] = >>1$out;
+
+         $sum[31:0] = $val1 + $val2;
+         $diff[31:0] = $val1 - $val2;
+         $prod[31:0] = $val1 * $val2;
+         $quot[31:0] = $val1 / $val2;
+         
+         $out[31:0] = $reset ? 0 : ($op[1] ? ($op[0] ? $quot[31:0] : $prod[31:0])
+                        : ($op[0] ? $diff[31:0] : $sum[31:0]));
+
+         $cnt[31:0] = $reset ? 0 : >>1$cnt + 1;
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+\SV
+   endmodule
+
+```
+
+Output:
+
+![image](https://github.com/user-attachments/assets/4474f58c-244d-4982-b73b-853915d172be)
+
+Now the same calculator circuit in pipelining can be implemented in two clock cycles whereby in first clock we compute the addition, subtraction, multiplication and division of the two input values and in the second clock we consider the operand to provide the required output.
+
+Code:
+
+```v
+
+\m5_TLV_version 1d: tl-x.org
+\m5
+
+\SV
+   m5_makerchip_module
+\TLV
+   $reset = *reset;
+   $clk_kar = *clk;
+   
+   |calc
+      @1
+         $val1[31:0] = $rand1[3:0];
+         $val2[31:0] = >>1$out;
+
+         $sum[31:0] = $val1 + $val2;
+         $diff[31:0] = $val1 - $val2;
+         $prod[31:0] = $val1 * $val2;
+         $quot[31:0] = $val1 / $val2;
+
+         $cnt[31:0] = $reset ? 0 : >>1$cnt + 1;
+      
+      @2
+         $out[31:0] = $reset ? 0 : ($op[1] ? ($op[0] ? $quot[31:0] : $prod[31:0])
+                        : ($op[0] ? $diff[31:0] : $sum[31:0]));
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+\SV
+   endmodule
+
+```
+
+Output: 
+
+![image](https://github.com/user-attachments/assets/f0532044-a645-41ff-a19f-e754270cd955)
+
+
+
+</details>
