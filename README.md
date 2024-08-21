@@ -1219,7 +1219,7 @@ Output:
 
 ![image](https://github.com/user-attachments/assets/6de7e3e0-78be-4b85-aa03-0e82c6185f68)
 
-### Register Read
+### Register File Read
 
 Register read is the process in a CPU where data is retrieved from specified registers for use in an instruction's execution.
 
@@ -1354,7 +1354,7 @@ Output:
 
 ![image](https://github.com/user-attachments/assets/0a6b063a-2e10-46f5-a8e0-d126b1ec8100)
 
-### Regsiter Write
+### Regsiter File Write
 
 Register write is the process in a CPU where the result of an instruction is stored back into a specified register.
 
