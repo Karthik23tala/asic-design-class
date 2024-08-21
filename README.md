@@ -1014,6 +1014,8 @@ The block diagram of the RISCV Micro Architecutre is as shown below.
 
 ### Instruction Fetch
 
+Instruction fetch is the process in a CPU where the next instruction to be executed is retrieved from memory into the instruction register.
+
 Code:
 
 ```v
@@ -1090,6 +1092,8 @@ Output:
 ![image](https://github.com/user-attachments/assets/e5eae0eb-261a-4be1-b0c7-4cbbd95b287e)
 
 ### Instruction Decode
+
+Instruction decode is the process in a CPU where the binary instruction fetched from memory is interpreted to determine the operation to be performed and the operands involved.
 
 Code:
 
@@ -1215,7 +1219,9 @@ Output:
 
 ![image](https://github.com/user-attachments/assets/6de7e3e0-78be-4b85-aa03-0e82c6185f68)
 
-### Instruction Read
+### Register Read
+
+Register read is the process in a CPU where data is retrieved from specified registers for use in an instruction's execution.
 
 Code:
 
@@ -1348,7 +1354,9 @@ Output:
 
 ![image](https://github.com/user-attachments/assets/0a6b063a-2e10-46f5-a8e0-d126b1ec8100)
 
-### Instruction Write
+### Regsiter Write
+
+Register write is the process in a CPU where the result of an instruction is stored back into a specified register.
 
 Code: 
 
@@ -1496,7 +1504,17 @@ Output:
 
 ## Complete Pipeline RISC-V CPU Micro Architecture
 
+Here’s a breakdown of what the code does, presented as key points:
 
+1. **RISC-V Processor Implementation**: The code implements a basic RISC-V processor in TL-Verilog, handling instruction fetch, decode, and execution.
+
+2. **Instruction Decode and Execution**: It decodes instructions to identify the type (e.g., R-type, I-type) and performs operations like addition or branch based on the instruction.
+
+3. **Register File Operations**: The processor reads from and writes to registers, managing source and destination registers as needed for each instruction.
+
+4. **Pipeline Stages**: Pipeline stages are defined using `@`, with different stages handling different parts of the instruction processing (e.g., fetch, decode, execute).
+
+5. **Simulation Control**: The code includes logic to end the simulation after a certain number of cycles and checks if the simulation passes or fails.
 
 Code:
 
