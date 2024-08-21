@@ -1062,6 +1062,7 @@ Code:
    |cpu
       @0
          $reset = *reset;
+         $clk_kar = *clk;
          $pc[31:0] = >>1$reset ? 32'b0 : (>>1$pc + 32'd4);
          
       @1
@@ -1089,7 +1090,7 @@ Code:
 
 Output:
 
-![image](https://github.com/user-attachments/assets/e5eae0eb-261a-4be1-b0c7-4cbbd95b287e)
+![image](https://github.com/user-attachments/assets/4e556a5d-5244-493b-8d41-a0d2a6766d2c)
 
 ### Instruction Decode
 
