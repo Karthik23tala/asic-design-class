@@ -1273,7 +1273,7 @@ Output Waveform:
 
 ![image](https://github.com/user-attachments/assets/2fa01f6e-f559-493a-bcc9-730312db1a59)
 
-![image](https://github.com/user-attachments/assets/58bb4a1c-e0d4-45a5-a141-8d5adf778f49)
+![image](https://github.com/user-attachments/assets/5df76226-5c8f-40d7-9e28-18e140743dae)
 
 Output Diagram Snapshots:
 
