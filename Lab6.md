@@ -1,6 +1,6 @@
 # ASIC Lab 6 Report (27/08/2024)
 
-In this lab, we have simulated the same sum 1 to 9 program as written in previous lab and compared the output waveforms.
+In this lab, we have simulated the same sum 1 to 9 program as written in previous lab and compared the output waveforms of gtkwave and makerchip platform.
 
 ## Simulation of Sum 1 to 9 program in Sandpiper and GTKWave
 
