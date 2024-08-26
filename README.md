@@ -1839,8 +1839,9 @@ Output Viz:
 ![image](https://github.com/user-attachments/assets/3dc85106-b255-478c-b157-dc08e22261dd)
 
 
-</details>
-
+<details>
+<summary>Lab 6</summary>
+<br>
 
 # ASIC Lab 6 Report (27/08/2024)
 
