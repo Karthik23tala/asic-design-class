@@ -1957,11 +1957,9 @@ Now, we need to run the ```rvmyth.v``` file, copy the output to ```.vcd``` file 
 Below is the list of commands to use.
 
 ```
-
 iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
 ./pre_synth_sim.out
 gtkwave pre_synth_sim.vcd
-
 ```
 
 Terminal Screenshots:
@@ -1970,7 +1968,6 @@ Terminal Screenshots:
 
 Output Waveform Screenshot:
 
-![image](https://github.com/user-attachments/assets/b34c0b2b-30db-4c4c-80c7-763b62baa11a)
-
+![image](https://github.com/user-attachments/assets/9506b968-2500-485d-a5b4-5e2136721ca5)
 
 </details>
