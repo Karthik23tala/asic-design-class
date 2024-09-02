@@ -1942,7 +1942,7 @@ Makerchip Output Waveform:
 <summary>Lab 7</summary>
 <br>
 
-# ASIC Lab 7 Report (27/08/2024)
+# ASIC Lab 7 Report (29/08/2024)
 
 In this lab, we have used the peripherals namely PLL (Phase Locked Loop) and DAC (Digital to Analog Converter) to convert the digital output obtained in the previous lab from digital format to analog format.
 
