@@ -1936,3 +1936,15 @@ Makerchip Output Waveform:
 **Conclusion** : By comparing the output waveforms of both gtkwave and makerchip we can conclude that the acheived output matches the expectation i.e., the sum of numbers from 1 to 9 which is 45 in decimal or 2D in hexadecimal format.
 
 </details>
+
+
+<details>
+<summary>Lab 7</summary>
+<br>
+
+# ASIC Lab 7 Report (27/08/2024)
+
+In this lab, we have simulated the same sum 1 to 9 program as written in previous lab and compared the output waveforms of gtkwave and makerchip platform.
+
+
+</details>
