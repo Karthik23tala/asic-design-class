@@ -92,3 +92,53 @@ Netlist post ```-noattr``` tag:
 ![image](https://github.com/user-attachments/assets/4ba8df8f-382c-47e1-ba82-3209e41a77f5)
 
 ## Day 2
+
+Understanding the library files:
+
+In the cloned sky 130 git, we can find the library files. 
+
+Basically library file is the collection of all the basic gates such as AND, OR, NAND, NOR, etc. 
+
+Now, each gate has multiple instances which vary in the specifications such as power, area, cell leakage power and more but the underhood functionality remains the same. A similar comparison for AND gates is shown below.
+
+![image](https://github.com/user-attachments/assets/ce0546b3-3fb3-449a-b356-4253ec87d978)
+
+In the next step, we generate the netlist for ```multiple_modules.v```.
+
+This verilog file takes a,b and c as input signals and generate y = a*b+c.
+
+Below are the commands and the respective screenshots.
+
+```
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top multiple_modules
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+write_verilog -noattr multiple_modules_hier.v
+show multiple_modules
+```
+
+![image](https://github.com/user-attachments/assets/9fb9dc95-a752-4368-be86-00a0251a9c43)
+
+![image](https://github.com/user-attachments/assets/d057a14e-a64e-4822-b0ce-44dd39cd9d97)
+
+In an ideal expected scenario the generated netlist should have one OR gate and one AND gate. But from the below generated netlist we can see that it has instantiated two sub modules u1 and u2. 
+
+![image](https://github.com/user-attachments/assets/fd27a101-b482-4c6a-bd4a-2fb847dfeacc)
+
+Now when the design has multiple modules then there is another way to generate the netlist which is called as flatten. In flatten, all the submodules are merged into single level and thereby the respective connections are explicitly defined.
+
+Below are the commands and the screenshot of the generated netlist.
+
+```
+flatten
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top multiple_modules
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+write_verilog -noattr multiple_modules_flat.v
+show multiple_modules
+```
+
+![image](https://github.com/user-attachments/assets/db3afac2-327e-4c29-9793-e84f4518814b)
+
