@@ -91,9 +91,9 @@ Netlist post ```-noattr``` tag:
 
 ![image](https://github.com/user-attachments/assets/4ba8df8f-382c-47e1-ba82-3209e41a77f5)
 
-## Day 2
+## Day 2: Hierarchial vs Flat Synthesis, Flop coding styles and optimisation
 
-Understanding the library files:
+### Understanding the library files:
 
 In the cloned sky 130 git, we can find the library files. 
 
@@ -102,6 +102,8 @@ Basically library file is the collection of all the basic gates such as AND, OR,
 Now, each gate has multiple instances which vary in the specifications such as power, area, cell leakage power and more but the underhood functionality remains the same. A similar comparison for AND gates is shown below.
 
 ![image](https://github.com/user-attachments/assets/ce0546b3-3fb3-449a-b356-4253ec87d978)
+
+### Hierarchial vs Flatten Sythesis
 
 In the next step, we generate the netlist for ```multiple_modules.v```.
 
@@ -141,4 +143,170 @@ show multiple_modules
 ```
 
 ![image](https://github.com/user-attachments/assets/db3afac2-327e-4c29-9793-e84f4518814b)
+
+### Flops Coding Styles and Optimisation
+
+In general, during the implementation of combinational circuit which involves multiple levels of gates due to the difference in the propogation delays of the gates we can encounter an unwanted glitch in the output. 
+
+To avoid this, flops are used in between any two combinational circuit stages. Since flip flop is a sequential circuit it activates only at the edge of the clock (posedge or negedge) and thereby provide a stable input to the next stage of the combinational circuit eliminating the glitches in the circuit.
+
+The flip flop can be coded in different styles either asynchronous or synchronous, including the reset or set pin in the circuit.
+
+#### D-Flip flop with Asynchronous Reset
+
+For example, we have run the D-Flip flop with asynchronous reset pin. The moment reset pin is high the output will be reset to zero irrespective of the clock posedge or negedge. Thus, it is the asynchronous reset pin. 
+
+Below are the commands and the respective screenshots:
+
+```
+iverilog dff_asyncres.v tb_dff_asyncres.v
+./a.out
+gtkwave tb_dff_asyncres.vcd
+```
+
+![image](https://github.com/user-attachments/assets/edc58268-5628-4094-93cd-8e17dfe65bed)
+
+#### D-Flip flop with Asynchronous Set
+
+Similarly, we can run the D-Flip flop with asynchronous set pin. The moment set pin is high the output will be reset to high irrespective of the clock posedge or negedge. Thus, it is the asynchronous set pin. 
+
+```
+iverilog dff_asyncres.v tb_dff_async_set.v
+./a.out
+gtkwave tb_dff_async_set.vcd
+```
+
+![image](https://github.com/user-attachments/assets/6d061130-fce5-4b75-b561-fd6afdb05438)
+
+#### D-Flip flop with Synchronous Set
+
+In a similar way, we can run the D-Flip flop with synchronous reset pin. In this case, when the reset pin is high the output resets to low after the positive edge of the clock. Here the set pin is dependent on the clock, hence synchronous.
+
+```
+iverilog dff_syncres.v tb_dff_syncres.v
+./a.out
+gtkwave tb_dff_syncres.vcd
+```
+
+![image](https://github.com/user-attachments/assets/359afb3e-231b-47d8-8641-7fd6775fe31e)
+
+Now, in the next step, we will generate the netlist for all these three types of D-Flip flops using the yosys synthesizer.
+
+1. D-Flip flop with Asynchronous Reset
+
+Commands and Screenshots:
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_asyncres.v
+synth -top dff_asyncres
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr dff_asyncres_netlist.v
+!gvim dff_asyncres_netlist.v
+```
+![image](https://github.com/user-attachments/assets/1cf6c1ba-6c0f-49ac-9732-b58247fde079)
+
+![image](https://github.com/user-attachments/assets/96793882-54d8-4ae0-be2e-b74c19c57d9e)
+
+![image](https://github.com/user-attachments/assets/7a06381b-d662-45b4-ae34-e2450591df94)
+
+![image](https://github.com/user-attachments/assets/6189a05a-54e4-4cf5-9b4e-ad52c143e545)
+
+
+2. D-Flip flop with Asynchronous Set
+
+Commands and Screenshots:
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_async_set.v
+synth -top dff_async_set
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr dff_async_set_netlist.v
+!gvim dff_async_set_netlist.v
+```
+![image](https://github.com/user-attachments/assets/9ee952dd-c4bd-4d7d-86bf-f6f1507755a0)
+
+![image](https://github.com/user-attachments/assets/056be057-aa91-4b4c-a324-f4d8005b05ab)
+
+![image](https://github.com/user-attachments/assets/07c0677c-1455-41c1-a87a-48f274a7b4b5)
+
+![image](https://github.com/user-attachments/assets/312dfd70-4903-449c-a1be-9047d5b73c61)
+
+3. D-Flip flop with Synchronous Reset
+
+Commands and Screenshots:
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_syncres.v
+synth -top dff_syncres
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr dff_syncres_netlist.v
+!gvim dff_syncres_netlist.v
+```
+
+![image](https://github.com/user-attachments/assets/c8f4f63c-06ae-45ba-82ff-632f7e45b92e)
+
+![image](https://github.com/user-attachments/assets/6668896f-8d9a-44eb-bbc8-c5dff604c3df)
+
+![image](https://github.com/user-attachments/assets/4a7888d2-0467-45eb-8c46-7885fb43c4ed)
+
+![image](https://github.com/user-attachments/assets/e75c5be6-4a05-4e94-966e-97b12df6a9c3)
+
+Generating the netlist for the special case circuits.
+
+1. Multiplication by a factor of 2: In this circuit, there are no special hardware multipler blocks are not required for the implementation. Rather we will append zero bit to the LSB of the number effectively shifting it to the left. The same can be seen the netlist images generated from the below commands.
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mult_2.v
+synth -top mul2
+show
+write_verilog -noattr mul2_netlist.v
+!gvim mul2_netlist.v
+```
+
+As we can see that there is no hardware involved hence the command of ``` abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib ``` says don't call the ABC function as there is nothing to map.
+
+![image](https://github.com/user-attachments/assets/1956e586-75ee-4c0f-83a4-64ce567a39ed)
+
+![image](https://github.com/user-attachments/assets/865c79a9-9ace-4346-8a61-0f823478be5e)
+
+![image](https://github.com/user-attachments/assets/89b54fc5-690a-463d-a2f4-7a8c8ff1353d)
+
+![image](https://github.com/user-attachments/assets/87a23eaa-1f2c-4519-9b36-3e37550d97fe)
+
+2. Multiplication by a factor of 9: Similar to the previous one, here for multiplication of the given number with a factor of 9 will be implemented without the use of any hardware cells, memories, etc.
+
+Below are the commands and the respective screenshots:
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mult_8.v
+synth -top mult8
+show
+write_verilog -noattr mult8_netlist.v
+!gvim mult8_netlist.v
+```
+
+![image](https://github.com/user-attachments/assets/5bfc6e45-70a4-4a04-b792-0212716fd3a6)
+
+![image](https://github.com/user-attachments/assets/cc030331-5a7e-4b32-aa38-38ed57390b7e)
+
+![image](https://github.com/user-attachments/assets/9cc030cd-8fa7-4fc6-a437-aa069f613da9)
+
+## Day 3: Combinational and Sequential Optimisations
+
 
