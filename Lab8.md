@@ -488,6 +488,40 @@ show multiple_module_opt2
 
 #### ```dff_const1.v``` - DFF with active low asynchronous reset
 
+Code:
+
+```v
+//Design
+module dff_const1(input clk, input reset, output reg q); 
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b0;
+	else
+		q <= 1'b1;
+end
+endmodule
+//Testbench
+module tb_dff_const1; 
+	reg clk, reset;
+	wire q;
+
+	dff_const1 uut (.clk(clk),.reset(reset),.q(q));
+
+	initial begin
+		$dumpfile("tb_dff_const1.vcd");
+		$dumpvars(0,tb_dff_const1);
+		// Initialize Inputs
+		clk = 0;
+		reset = 1;
+		#3000 $finish;
+	end
+
+	always #10 clk = ~clk;
+	always #1547 reset=~reset;
+endmodule
+```
+
 Commands and Screenshots:
 
 ```
@@ -515,6 +549,39 @@ show
 ![image](https://github.com/user-attachments/assets/b7fdac5e-6897-4fa0-bbf2-0336b4cdf199)
 
 #### ```dff_const2.v``` - DFF with active high asynchronous reset
+
+Code:
+
+```v
+module dff_const2(input clk, input reset, output reg q); 
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b1;
+	else
+		q <= 1'b1;
+end
+endmodule
+//Testbench
+module tb_dff_const2; 
+	reg clk, reset;
+	wire q;
+
+	dff_const2 uut (.clk(clk),.reset(reset),.q(q));
+
+	initial begin
+		$dumpfile("tb_dff_const1.vcd");
+		$dumpvars(0,tb_dff_const1);
+		// Initialize Inputs
+		clk = 0;
+		reset = 1;
+		#3000 $finish;
+	end
+
+	always #10 clk = ~clk;
+	always #1547 reset=~reset;
+endmodule
+```
 
 Commands and Screenshots:
 
@@ -546,6 +613,28 @@ show
 
 #### ```dff_const3.v``` - DFF with active low asynchronous reset
 
+Code:
+
+```v
+module dff_const3(input clk, input reset, output reg q); 
+	reg q1;
+
+	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
+		begin
+			q <= 1'b1;
+			q1 <= 1'b0;
+		end
+		else
+		begin	
+			q1 <= 1'b1;
+			q <= q1;
+		end
+	end
+endmodule
+```
+
 Commands and Screenshots:
 
 ```
@@ -572,6 +661,28 @@ show
 
 #### ```dff_const4.v``` - DFF with active high asynchronous reset
 
+Code:
+
+```v
+module dff_const4(input clk, input reset, output reg q); 
+	reg q1;
+
+	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
+		begin
+			q <= 1'b1;
+			q1 <= 1'b1;
+		end
+		else
+		begin	
+			q1 <= 1'b1;
+			q <= q1;
+		end
+	end
+endmodule
+```
+
 Commands and Screenshots:
 
 ```
@@ -597,6 +708,29 @@ show
 
 #### ```dff_const5.v``` - DFF with asynchronous reset
 
+Code:
+
+```v
+//Design
+module dff_const5(input clk, input reset, output reg q); 
+	reg q1;
+
+	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
+		begin
+			q <= 1'b0;
+			q1 <= 1'b0;
+		end
+		else
+		begin	
+			q1 <= 1'b1;
+			q <= q1;
+		end
+	end
+endmodule
+```
+
 Commands and Screenshots:
 
 ```
@@ -619,13 +753,62 @@ show
 
 ![image](https://github.com/user-attachments/assets/b099df41-7701-4d5a-b2a8-639ab91e4079)
 
+#### ```counter_opt.v``` - Counter Optimisation 1
+
+Code:
+
+```v
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = count[0];
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+```
+
+Commands and Screenshots:
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog counter_opt.v
+synth -top counter_opt
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![image](https://github.com/user-attachments/assets/cd9e0702-3021-4d50-9e26-dbaa63da9d38)
+
+![image](https://github.com/user-attachments/assets/0325ef6d-2fa8-4a81-8b12-404f3d1b63b4)
 
 
+#### ```counter_opt2.v``` - Counter Optimisation 2
 
+Code:
 
+```v
 
+```
 
+Commands and Screenshots:
 
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog counter_opt2.v
+synth -top counter_opt
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
 
 
 
