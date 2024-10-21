@@ -309,4 +309,178 @@ write_verilog -noattr mult8_netlist.v
 
 ## Day 3: Combinational and Sequential Optimisations
 
+### Combinational Circuits Optimisation
+
+#### ```opt_check.v``` 2 Input AND Gate
+
+To infer a two input AND gate we will run the ```opt_check.v``` file.
+
+```v
+module opt_check(input a, input b, output y);
+	assign y = a?b:0;
+endmodule
+```
+
+Below are the commands and the screenshots:
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog opt_check.v
+synth -top opt_check
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![image](https://github.com/user-attachments/assets/7a0877b9-bf3c-4673-a989-222e1ab4cfff)
+
+![image](https://github.com/user-attachments/assets/465b32f4-786a-4f04-90a7-bb4f51a7f87c)
+
+#### ```opt_check2.v``` 2 Input OR Gate
+
+Similarly for a two input OR gate, we will run the ```opt_check2.v``` file.
+
+```v
+module opt_check2(input a, input b, output y);
+	assign y = a?1:b;
+endmodule
+```
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog opt_check2.v
+synth -top opt_check2
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![image](https://github.com/user-attachments/assets/43e2dcbb-87ed-49fa-bc64-e08892409572)
+
+![image](https://github.com/user-attachments/assets/b955898d-c5b2-4c2f-ab63-aaa6a8aa7193)
+
+
+#### ```opt_check3.v``` 3 Input AND Gate
+
+The ```opt_check3.v``` file infers three input AND gate
+
+```v
+module opt_check3 (input a , input b, input c , output y);
+	assign y = a?(c?b:0):0;
+endmodule
+```
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog opt_check3.v
+synth -top opt_check3
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![image](https://github.com/user-attachments/assets/4ac0650b-ce4c-4260-8e3a-b0c645d35730)
+
+![image](https://github.com/user-attachments/assets/f66a00c1-c289-4d0c-9dfb-ca20af77d91a)
+
+#### ```opt_check4.v``` XNOR Gate
+
+```v
+module opt_check4 (input a , input b , input c , output y);
+ assign y = a?(b?(a & c ):c):(!c);
+ endmodule
+```
+
+Below are the commands and respective screenshots:
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog opt_check4.v
+synth -top opt_check4
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![image](https://github.com/user-attachments/assets/4067ff86-2f07-401a-b69d-8e077b4b3ec0)
+
+![image](https://github.com/user-attachments/assets/caef6a1c-1fd6-4590-a3ad-dbce2c20fa11)
+
+#### Multiple modules optimisation 1
+
+```v
+module sub_module1(input a, input b, output y);
+	assign y = a & b;
+endmodule
+
+module sub_module2 (input a, input b output y);
+	assign y = a^b;
+endmodule
+
+module multiple_module_opt(input a, input b input c, input d output y);
+	wire n1,n2, n3;
+
+	sub_module1 U1 (.a(a), .b(1'b1), .y(n1));
+	sub_module2 U2 (.a(n1), .b(1'b0), .y(n));
+	sub_module2 U3 (.a(b), .b(d), .y(n3));
+
+	assign y = c | (b & n1);
+endmodule
+```
+
+Below are the commands and respective screenshots:
+
+```
+yosys
+flatten
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_module_opt.v
+synth -top multiple_module_opt
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show multiple_module_opt
+```
+
+![image](https://github.com/user-attachments/assets/b1baba70-061d-413e-a261-7b951a1474fd)
+
+![image](https://github.com/user-attachments/assets/883186f6-2169-433b-bcc4-15fe9f88980f)
+
+
+#### Multiple modules optimisation 2
+
+```v
+module sub_module(input a input b output y);
+	assign y = a & b;
+endmodule
+
+module multiple_module_opt2(input a, input b input c, input d, output y);
+	wire n1,n2, n3;
+
+	sub_module U1 (.a(a), .b(1'b0), y(n));
+	sub_module U2 (.a(b), .b(c), .y(n2));
+	sub_module U3 (.a(n2), .b(d), .y(n));
+	sub_module U4 (.a(n3), .b(n1), .y(y));
+endmodule
+```
+
+Below are the commands and respective screenshots:
+
+```
+yosys
+flatten
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_module_opt2.v
+synth -top multiple_module_opt2
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show multiple_module_opt2
+```
+
+![image](https://github.com/user-attachments/assets/347175cf-51fd-4e01-bb07-9203dc99d280)
+
+![image](https://github.com/user-attachments/assets/698039b2-305a-4c0d-8d78-4c37124470d3)
 
