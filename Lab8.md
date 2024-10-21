@@ -484,3 +484,148 @@ show multiple_module_opt2
 
 ![image](https://github.com/user-attachments/assets/698039b2-305a-4c0d-8d78-4c37124470d3)
 
+### Sequential Circuits Optimisation
+
+#### ```dff_const1.v``` - DFF with active low asynchronous reset
+
+Commands and Screenshots:
+
+```
+iverilog dff_const1.v tb_dff_const1.v
+./a.out
+gtkwave tb_dff_const1.vcd
+```
+
+![image](https://github.com/user-attachments/assets/bff136b8-3ade-49b9-8df8-5ed3cbb7cc2b)
+
+In the above waveform, we can see that the output goes low as soon as the reset pin goes high i.e., it does not wait for the next clock edge to change the state of the circuit. Hence, asynchronous reset.
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const1.v
+synth -top dff_const1
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![image](https://github.com/user-attachments/assets/1d9f20b8-9f2c-4af0-9406-7b8170f46467)
+
+![image](https://github.com/user-attachments/assets/b7fdac5e-6897-4fa0-bbf2-0336b4cdf199)
+
+#### ```dff_const2.v``` - DFF with active high asynchronous reset
+
+Commands and Screenshots:
+
+```
+iverilog dff_const2.v tb_dff_const2.v
+./a.out
+gtkwave tb_dff_const2.vcd
+```
+
+Output Waveform:
+
+![image](https://github.com/user-attachments/assets/01ffa7b0-8d5c-4fbf-a788-7f7fb115cb3a)
+
+Now to generate the netlist using yosys:
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const2.v
+synth -top dff_const2
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![image](https://github.com/user-attachments/assets/aa32d63c-23f8-4c36-9472-6cb4d445d17f)
+
+![image](https://github.com/user-attachments/assets/6216abc4-5a88-41a8-abd6-ac8a0119e67d)
+
+#### ```dff_const3.v``` - DFF with active low asynchronous reset
+
+Commands and Screenshots:
+
+```
+iverilog dff_const3.v tb_dff_const3.v
+./a.out
+gtkwave tb_dff_const3.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const3.v
+synth -top dff_const3
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+
+![image](https://github.com/user-attachments/assets/58f1b67b-b043-4353-9b26-533b305c1143)
+
+![image](https://github.com/user-attachments/assets/2cf9da8d-7b41-4dec-b24a-8c36f5a82c97)
+
+![image](https://github.com/user-attachments/assets/b20e6f69-340d-4512-8be9-bbf97336ab17)
+
+
+#### ```dff_const4.v``` - DFF with active high asynchronous reset
+
+Commands and Screenshots:
+
+```
+iverilog dff_const4.v tb_dff_const4.v
+./a.out
+gtkwave tb_dff_const4.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const4.v
+synth -top dff_const4
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![image](https://github.com/user-attachments/assets/e626aee8-0af9-45e8-872c-544c7c9f2e3b)
+
+![image](https://github.com/user-attachments/assets/ca59404c-1557-4b78-becc-f9a8dc0dfd0c)
+
+![image](https://github.com/user-attachments/assets/f56872ed-6013-4eea-b494-07d7b4eb1fb9)
+
+
+#### ```dff_const5.v``` - DFF with asynchronous reset
+
+Commands and Screenshots:
+
+```
+iverilog dff_const5.v tb_dff_const5.v
+./a.out
+gtkwave tb_dff_const5.vcd
+
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const5.v
+synth -top dff_const5
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![image](https://github.com/user-attachments/assets/2dfc8270-1abb-4d3c-999b-76704aebdb0d)
+
+![image](https://github.com/user-attachments/assets/6749a1a4-0c1f-4f64-ad28-9dd705af5593)
+
+![image](https://github.com/user-attachments/assets/b099df41-7701-4d5a-b2a8-639ab91e4079)
+
+
+
+
+
+
+
+
+
+
+
