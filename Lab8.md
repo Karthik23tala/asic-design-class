@@ -933,9 +933,64 @@ gtkwave tb_bad_mux.vcd
 
 ![image](https://github.com/user-attachments/assets/d6c9bf6a-f451-494c-ae4d-921c9af152df)
 
+### ```blocking_caveat.v```
 
+Code:
 
+```v
+module blocking_caveat(input a, input b, input c, output reg d);
+	reg x;
 
+	always@(*)
+	begin
+		d = x & c;
+		x = a | b;
+	end
+endmodule
+```
 
+Commands and Screenshots:
 
+```
+iverilog blocking_caveat.v tb_blocking_caveat.v
+./a.out
+gtkwave tb_blocking_caveat.vcd
 
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog blocking_caveat.v
+synth -top blocking_caveat
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr blocking_caveat_net.v
+!gvim blocking_caveat_net.v
+```
+
+![image](https://github.com/user-attachments/assets/a5ba7037-65d7-4a03-a534-c8c671e973ba)
+
+From the above waveform, we can observe an instance where a = 1, b = 0 and c = 1 but the output d = 0 which is incorrect. 
+
+This incorrect output is due to the usage of blocking statement whereby the circuit has inferred the previous values of a and b for the output calculation.
+
+![image](https://github.com/user-attachments/assets/6d65fee2-b825-4641-aa75-f887ac119e9c)
+
+![image](https://github.com/user-attachments/assets/cc4e7a9c-890d-4ebc-895f-abf35d26e650)
+
+![image](https://github.com/user-attachments/assets/cb24aa30-7d6c-4eff-8aeb-3f22ce72450f)
+
+Gate-level synthesis commands and screenshots:
+
+```
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_net.v tb_blocking_caveat.v
+./a.out
+gtkwave tb_blocking_caveat.vcd
+```
+
+![image](https://github.com/user-attachments/assets/032c7954-b8c2-4b99-a77b-a02c4b8aa285)
+
+![image](https://github.com/user-attachments/assets/39d5b6d2-b990-4a34-9a37-811eaba24720)
+
+In the above waveform generated through gate level synthesis we can observe that the occurence mismatch is removed and we obtain the proper output as per the instantaneous values of the input signals.
+
+# Conclusion: In summary we can conclude that the mismatch error is resolved and there is no blocking occurence post the simulation through gate level synthesis (GLS)
