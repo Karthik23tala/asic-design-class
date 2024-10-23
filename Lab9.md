@@ -1,6 +1,26 @@
 # Lab 9 Report (22/10/24) - RVMYTH verilog file synthesis using Yosys and Post Sythesis simulation using iverilog and GTKWave
 <br>
 
+## Pre Synthesis Simulation
+
+Commands:
+
+```
+iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
+./pre_synth_sim.out
+gtkwave pre_synth_sim.vcd
+```
+
+Generated Waveform Pre Synthesis simulation:
+
+Zoomed out results showing multiple cycles:
+
+![image](https://github.com/user-attachments/assets/f3e55a35-42eb-45c0-bb36-050f9cc097f3)
+
+Zoomed in results showing the sum of numbers 1 to 9:
+
+![image](https://github.com/user-attachments/assets/f060765f-62cd-4a44-aec4-4e9918c25993)
+
 ## Synthesis using Yosys
 
 Commands:
@@ -65,12 +85,12 @@ Zoomed in results showing the sum of numbers 1 to 9:
 
 ![image](https://github.com/user-attachments/assets/4c3b64a0-df18-4fb7-8ce0-ef4a644cddf4)
 
-Waveform Screenshot from Lab9:
+Waveform Screenshot Pre-Synthesis:
 
-![image](https://github.com/user-attachments/assets/ceed17b7-36f4-4bb7-a0ec-f2d3cb9b7647)
+![image](https://github.com/user-attachments/assets/f060765f-62cd-4a44-aec4-4e9918c25993)
 
-Waveform Screenshot from Lab6: 
+Waveform Screenshot Post-Synthesis: 
 
-![image](https://github.com/user-attachments/assets/929aa869-c852-4de1-a3c3-43925a0c504b)
+![image](https://github.com/user-attachments/assets/4c3b64a0-df18-4fb7-8ce0-ef4a644cddf4)
 
-### Conclusion: From the above comparison of waveforms from both the labs we can conclude that the acheived output matches the expectation i.e., the sum of numbers from 1 to 9 which is 45 in decimal or 2D in hexadecimal format.
+### Conclusion: From the above comparison of waveforms from both the synthesis we can conclude that the acheived output matches the expectation i.e., the sum of numbers from 1 to 9 which is 45 in decimal or 2D in hexadecimal format.
