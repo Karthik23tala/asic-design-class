@@ -1,4 +1,4 @@
-# Lab 9 Report(22/10/24) - RVMYTH verilog file synthesis using Yosys and Post Sythesis simulation using iverilog and GTKWave
+# Lab 9 Report (22/10/24) - RVMYTH verilog file synthesis using Yosys and Post Sythesis simulation using iverilog and GTKWave
 <br>
 
 ## Synthesis using Yosys
