@@ -3089,11 +3089,13 @@ Zoomed in results showing the sum of numbers 1 to 9:
 
 ![image](https://github.com/user-attachments/assets/4c3b64a0-df18-4fb7-8ce0-ef4a644cddf4)
 
-Waveform Screenshot Pre-Synthesis:
+## Comparison of Pre vs Post Synthesis Simulation Waveform:
+
+### Waveform Screenshot Pre-Synthesis:
 
 ![image](https://github.com/user-attachments/assets/f060765f-62cd-4a44-aec4-4e9918c25993)
 
-Waveform Screenshot Post-Synthesis: 
+### Waveform Screenshot Post-Synthesis: 
 
 ![image](https://github.com/user-attachments/assets/4c3b64a0-df18-4fb7-8ce0-ef4a644cddf4)
 
