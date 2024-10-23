@@ -11,16 +11,6 @@ iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/in
 gtkwave pre_synth_sim.vcd
 ```
 
-Generated Waveform Pre Synthesis simulation:
-
-Zoomed out results showing multiple cycles:
-
-![image](https://github.com/user-attachments/assets/f3e55a35-42eb-45c0-bb36-050f9cc097f3)
-
-Zoomed in results showing the sum of numbers 1 to 9:
-
-![image](https://github.com/user-attachments/assets/f060765f-62cd-4a44-aec4-4e9918c25993)
-
 ## Synthesis using Yosys
 
 Commands:
@@ -75,24 +65,18 @@ mkdir -p output/post_synth_sim && iverilog -o output/post_synth_sim/post_synth_s
 gtkwave post_synth_sim.vcd
 ```
 
-Generated Waveform post Gate Level Synthesis simulation:
-
-Zoomed out results showing multiple cycles:
-
-![image](https://github.com/user-attachments/assets/9b50a9d0-c918-48ef-88cc-83b2a46a16cb)
-
-Zoomed in results showing the sum of numbers 1 to 9:
-
-![image](https://github.com/user-attachments/assets/4c3b64a0-df18-4fb7-8ce0-ef4a644cddf4)
-
 ## Comparison of Pre vs Post Synthesis Simulation Waveform:
 
 ### Waveform Screenshot Pre-Synthesis:
 
 ![image](https://github.com/user-attachments/assets/f060765f-62cd-4a44-aec4-4e9918c25993)
 
+![image](https://github.com/user-attachments/assets/f3e55a35-42eb-45c0-bb36-050f9cc097f3)
+
 ### Waveform Screenshot Post-Synthesis: 
 
 ![image](https://github.com/user-attachments/assets/4c3b64a0-df18-4fb7-8ce0-ef4a644cddf4)
+
+![image](https://github.com/user-attachments/assets/9b50a9d0-c918-48ef-88cc-83b2a46a16cb)
 
 ### Conclusion: From the above comparison of waveforms from both the synthesis we can conclude that the acheived output matches the expectation i.e., the sum of numbers from 1 to 9 which is 45 in decimal or 2D in hexadecimal format.
