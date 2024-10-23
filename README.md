@@ -2999,7 +2999,7 @@ In the above waveform generated through gate level synthesis we can observe that
 </details>
 
 <details>
-<summary>Lab 1</summary>
+<summary>Lab 9</summary>
 <br>
 
 # Lab 9 Report (22/10/24) - RVMYTH verilog file synthesis using Yosys and Post Sythesis simulation using iverilog and GTKWave
