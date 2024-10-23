@@ -1,6 +1,5 @@
-# RVMYTH verilog file synthesis using YOsys and Post Sythesis simulation using iverilog and GTKWave
+# Lab 9 Report(22/10/24) - RVMYTH verilog file synthesis using Yosys and Post Sythesis simulation using iverilog and GTKWave
 <br>
-
 ## Synthesis using Yosys
 
 Commands:
@@ -65,4 +64,12 @@ Zoomed in results showing the sum of numbers 1 to 9:
 
 ![image](https://github.com/user-attachments/assets/4c3b64a0-df18-4fb7-8ce0-ef4a644cddf4)
 
+Waveform Screenshot from Lab9:
 
+![image](https://github.com/user-attachments/assets/ceed17b7-36f4-4bb7-a0ec-f2d3cb9b7647)
+
+Waveform Screenshot from Lab6: 
+
+![image](https://github.com/user-attachments/assets/929aa869-c852-4de1-a3c3-43925a0c504b)
+
+### Conclusion: From the above comparison of waveforms from both the labs we can conclude that the acheived output matches the expectation i.e., the sum of numbers from 1 to 9 which is 45 in decimal or 2D in hexadecimal format.
