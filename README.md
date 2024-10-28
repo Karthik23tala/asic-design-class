@@ -3087,7 +3087,7 @@ gtkwave post_synth_sim.vcd
 </details>
 
 <details>
-<summary>Lab 9</summary>
+<summary>Lab 10</summary>
 <br>
 
 # Lab 10 Report (24/10/24) - Static Timing Analysis (STA) for Synthesized RISCV Core using OpenSTA
