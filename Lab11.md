@@ -93,6 +93,12 @@ Below is the table listing different slack timings (Total Negative Slack, Worst 
 
 As we can infer from the table above, worst negative slack and worst setup slack are the same.
 
+## Terminal Screenshots:
+
+![Screenshot from 2024-11-03 18-12-16](https://github.com/user-attachments/assets/143333f5-e6c8-40c3-89be-c952b6d258e9)
+
+![Screenshot from 2024-11-03 18-12-42](https://github.com/user-attachments/assets/57da655b-963a-49f7-a780-4d0eb3296bda)
+
 ## Screenshots of Waveforms:
 
 **Note: The timings marked across the Y-axis are in nanoseconds**
