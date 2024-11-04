@@ -49,7 +49,7 @@ report_wns -digits {4} >> /mnt/sta_output/sta_wns.txt
 }
 ```
 
-## SDC File:
+## SDC File ```vsdbabysoc_synthesis.sdc``` :
 
 ```
 set PERIOD 9.05
