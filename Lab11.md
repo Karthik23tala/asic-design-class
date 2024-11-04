@@ -108,3 +108,11 @@ As we can infer from the table above, worst negative slack and worst setup slack
 ### Total Negative Slack:
 
 ![TNS](https://github.com/user-attachments/assets/44ac5f56-cef7-4557-8971-178f387c4965)
+
+
+## Conclusion:
+
+From the above analysis we can conclude that 
+
+1. ```sky130_fd_sc_hd__ss_n40C_1v28.lib``` Library file has the worst setup slack
+2. ```sky130_fd_sc_hd__ff_100C_1v95.lib``` Library file has the worst hold slack
