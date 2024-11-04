@@ -70,9 +70,9 @@ set_input_transition [expr $PERIOD * 0.08] [get_ports VREFH]
 
 ## Table
 
-Below is the table listing different slack timings (Total Negative Slack, Worst Setup Slack and Worst Hold Slack) for the listed library files.
+Below is the table listing different slack timings (Total Negative Slack, Worst Negative Slack, Worst Setup Slack and Worst Hold Slack) for the listed library files.
 
-| Library Name                      | Total Negative Slack           | Worst Negative Slack       | Worst Setup Slack | Worst Hold Slack |
+| PVT Corner                      | Total Negative Slack           | Worst Negative Slack       | Worst Setup Slack | Worst Hold Slack |
 | ----------------------------------| ------------- | ----------| ----------------- | ---------------- |
 | sky130_fd_sc_hd__tt_025C_1v80.lib | -8981.5078    | -10.0227  | -10.0227          | -0.3797          |
 | sky130_fd_sc_hd__tt_100C_1v80.lib | -7943.0352    | -8.7653   | -8.7653           | -0.3815          |
