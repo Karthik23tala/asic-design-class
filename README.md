@@ -3263,49 +3263,41 @@ set_input_transition [expr $PERIOD * 0.08] [get_ports VREFH]
 
 Below is the table listing different slack timings (Total Negative Slack, Worst Negative Slack, Worst Setup Slack and Worst Hold Slack) for the listed library files.
 
-| PVT Corner                      | Total Negative Slack           | Worst Negative Slack       | Worst Setup Slack | Worst Hold Slack |
-| ----------------------------------| ------------- | ----------| ----------------- | ---------------- |
-| sky130_fd_sc_hd__tt_025C_1v80.lib | -8981.5078    | -10.0227  | -10.0227          | -0.3797          |
-| sky130_fd_sc_hd__tt_100C_1v80.lib | -7943.0352    | -8.7653   | -8.7653           | -0.3815          |
-| sky130_fd_sc_hd__ff_100C_1v65.lib | -4767.1372    | -6.1226   | -6.1226           | -0.442           |
-| sky130_fd_sc_hd__ff_100C_1v95.lib | -1683.0513    | -2.8678   | -2.8678           | -0.5001          |
-| sky130_fd_sc_hd__ff_n40C_1v56.lib | -10473.207    | -12.0194  | -12.0194          | -0.3826          |
-| sky130_fd_sc_hd__ff_n40C_1v65.lib | -7342.2397    | -9.0245   | -9.0245           | -0.422           |
-| sky130_fd_sc_hd__ff_n40C_1v76.lib | -4981.9219    | -6.3651   | -6.3651           | -0.4569          |
-| sky130_fd_sc_hd__ff_n40C_1v95.lib | -2339.7185    | -3.5006   | -3.5006           | -0.4991          |
-| sky130_fd_sc_hd__ss_100C_1v40.lib | -44110.1016   | -37.0507  | -37.0507          | 0.2804           |
-| sky130_fd_sc_hd__ss_100C_1v60.lib | -27036.1855   | -23.6857  | -23.6857          | 0.0049           |
-| sky130_fd_sc_hd__ss_n40C_1v28.lib | -162572.1875  | -129.3335 | -129.3335         | 1.1813           |
-| sky130_fd_sc_hd__ss_n40C_1v35.lib | -108107.0234  | -87.5788  | -87.5788          | 0.715            |
-| sky130_fd_sc_hd__ss_n40C_1v40.lib | -86088.9844   | -70.3175  | -70.3175          | 0.4924           |
-| sky130_fd_sc_hd__ss_n40C_1v44.lib | -75343.6719   | -62.1922  | -62.1922          | 0.3552           |
-| sky130_fd_sc_hd__ss_n40C_1v60.lib | -41920.6055   | -36.2671  | -36.2671          | 0.0262           |
-| sky130_fd_sc_hd__ss_n40C_1v76.lib | -28783.7734   | -25.9217  | -25.9217          | -0.184           |
+| PVT Corner                  | TNS         | WNS       | Worst Max Slack | Worst Min Slack |
+|--------------------------------|-------------|-----------|-----------------|-----------------|
+| sky130_fd_sc_hd__tt_025C_1v80.lib | -16.192     | -0.4633   | -0.4633         | -0.4144         |
+| sky130_fd_sc_hd__tt_100C_1v80.lib | -9.4742     | -0.309    | -0.309          | -0.4095         |
+| sky130_fd_sc_hd__ff_100C_1v65.lib | 0           | 0         | 1.652           | -0.4749         |
+| sky130_fd_sc_hd__ff_100C_1v95.lib | 0           | 0         | 3.1643          | -0.528          |
+| sky130_fd_sc_hd__ff_n40C_1v56.lib | -2.9926     | -0.1244   | -0.1244         | -0.4325         |
+| sky130_fd_sc_hd__ff_n40C_1v65.lib | 0           | 0         | 1.0087          | -0.4689         |
+| sky130_fd_sc_hd__ff_n40C_1v76.lib | 0           | 0         | 2.0276          | -0.4997         |
+| sky130_fd_sc_hd__ff_n40C_1v95.lib | 0           | 0         | 3.1894          | -0.5365         |
+| sky130_fd_sc_hd__ss_100C_1v40.lib | -3455.4934  | -19.5241  | -19.5241        | 0.1813          |
+| sky130_fd_sc_hd__ss_100C_1v60.lib | -1449.187   | -10.2765  | -10.2765        | -0.082          |
+| sky130_fd_sc_hd__ss_n40C_1v28.lib | -15358.8008 | -64.9657  | -64.9657        | 1.1056          |
+| sky130_fd_sc_hd__ss_n40C_1v35.lib | -9297.9424  | -42.0995  | -42.0995        | 0.6235          |
+| sky130_fd_sc_hd__ss_n40C_1v40.lib | -6662.5122  | -32.0962  | -32.0962        | 0.4009          |
+| sky130_fd_sc_hd__ss_n40C_1v44.lib | -5188.7397  | -26.3104  | -26.3104        | 0.2669          |
+| sky130_fd_sc_hd__ss_n40C_1v60.lib | -1991.1907  | -13.0115  | -13.0115        | -0.0612         |
+| sky130_fd_sc_hd__ss_n40C_1v76.lib | -817.7378   | -6.7844   | -6.7844         | -0.2202         |
 
-As we can infer from the table above, worst negative slack and worst setup slack are the same.
 
-## Terminal Screenshots:
+## Terminal Screenshot for the commands:
 
-![Screenshot from 2024-11-03 18-12-16](https://github.com/user-attachments/assets/143333f5-e6c8-40c3-89be-c952b6d258e9)
-
-![Screenshot from 2024-11-03 18-12-42](https://github.com/user-attachments/assets/57da655b-963a-49f7-a780-4d0eb3296bda)
+![image](https://github.com/user-attachments/assets/1ee6133e-36c4-48a1-9bec-e76b81865356)
 
 ## Screenshots of Waveforms:
 
 **Note: The timings marked across the Y-axis are in nanoseconds**
 
-### Worst Setup Slack:
+![slack_plot_1](https://github.com/user-attachments/assets/b6d28050-ac32-49de-ac66-97f3807cedec)
 
-![Worst Setup Slack](https://github.com/user-attachments/assets/7daa0093-766e-438e-9b8a-751e8dfde7d7)
+![slack_plot_2](https://github.com/user-attachments/assets/de69d894-9bab-4a02-8f3e-0fffffc63f21)
 
-### Worst Hold Slack:
+![slack_plot_3](https://github.com/user-attachments/assets/cc614a35-96b5-4d6a-b1aa-a635be4d635e)
 
-![Worst Hold Slack](https://github.com/user-attachments/assets/7479da70-21ad-4f66-93a2-bb2a85712002)
-
-### Total Negative Slack:
-
-![TNS](https://github.com/user-attachments/assets/44ac5f56-cef7-4557-8971-178f387c4965)
-
+![slack_plot_4](https://github.com/user-attachments/assets/bb63a18c-7aec-4c1f-9ca0-efd948ec4861)
 
 ## Conclusion:
 
