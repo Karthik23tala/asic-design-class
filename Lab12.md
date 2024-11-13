@@ -334,10 +334,8 @@ Screenshot of generated plot
 * 20% of output (3.3V) = 0.66V 80% of output (3.3V) = 2.64V
 
 20% Screenshots
-![Screenshot from 2024-11-13 14-53-45](https://github.com/user-attachments/assets/2c7e302e-8805-4a18-866a-f1a015b85e3c)
 
 80% Screenshot 
-![Screenshot from 2024-11-13 14-54-51](https://github.com/user-attachments/assets/af104a20-1fd3-4d79-a198-a6f139975682)
 
 
 ### Rise Transition Time = 2.2393 - 2.1799 = 0.0594 ns = 59.40 ps
@@ -346,11 +344,9 @@ Screenshot of generated plot
 * 20% of output (3.3V) = 0.66V 20% of output (3.3V) = 2.64V
 
 20% Screenshots
-![Screenshot from 2024-11-13 14-59-19](https://github.com/user-attachments/assets/01da40be-7097-4fd2-ab50-9f8f69b2646d)
 
 
 80% Screenshot 
-![Screenshot from 2024-11-13 15-01-43](https://github.com/user-attachments/assets/b8565c75-ae8a-4bb2-ad36-40289e9cdffe)
 
 ### Fall Transition Time = 4.09345 - 4.05088 = 0.04257 ns = 42.57 ps
 
@@ -358,7 +354,6 @@ Screenshot of generated plot
 * 50 % of 3.3V = 1.65V
 
 50% Screenshots
-![Screenshot from 2024-11-13 15-08-06](https://github.com/user-attachments/assets/35117eb5-cf1f-4593-8d82-3e61b47b8907)
 
 ### Rise cell delay = 2.2075 - 2.1489 = 0.0586 ns = 58.60 ps
 
@@ -366,7 +361,6 @@ Screenshot of generated plot
 * 50 % of 3.3V = 1.65V
 
 50% Screenshots
-![Screenshot from 2024-11-13 15-15-50](https://github.com/user-attachments/assets/a123686f-3d57-4a90-9839-4d946422cbde)
 
 ### Fall cell delay = 4.0765−4.05 = 0.0265 ns = 26.50 ps
 
@@ -399,28 +393,18 @@ magic -d XR &
 ```
 
 Screenshots of commands run
-![Screenshot from 2024-11-13 15-23-06](https://github.com/user-attachments/assets/a1c23949-2b4c-4b54-93f7-d9700f876130)
 
 
 Screenshot of .magicrc file 
-![Screenshot from 2024-11-13 15-23-27](https://github.com/user-attachments/assets/ffe1fda2-5260-41ce-a8ae-b0e5386206a2)
-
-
 
 Incorrectly implemented poly.9 simple rule correction
 
 Screenshot of poly rules
-![Screenshot from 2024-11-13 15-29-31](https://github.com/user-attachments/assets/c39d49ab-07a1-40b4-b6a1-f07c6276df79)
 
 Incorrectly implemented poly.9 rule no drc violation even though spacing < 0.48u
-![Screenshot from 2024-11-13 18-23-47](https://github.com/user-attachments/assets/10aafd85-b40c-40f6-b902-c7fc28be4919)
-
-![Screenshot from 2024-11-13 15-52-18](https://github.com/user-attachments/assets/d4eecd11-20d7-4edb-9bdf-a41b6f59617c)
 
 
 New commands inserted in sky130A.tech file to update drc
-![Screenshot from 2024-11-13 16-06-31](https://github.com/user-attachments/assets/fbcce407-f21b-4787-a5b2-98166763343d)
-![Screenshot from 2024-11-13 16-08-48](https://github.com/user-attachments/assets/461779c2-c5e1-4591-bb45-bebd35980baa)
 
 Commands to run in tkcon window
 ```
@@ -435,20 +419,16 @@ drc why
 ```
 
 Screenshot of magic window with rule implemented
-![Screenshot from 2024-11-13 16-34-05](https://github.com/user-attachments/assets/bf21f89d-2795-4a4d-957b-aa53b78b47a0)
 
 Incorrectly implemented difftap.2 simple rule correction
 
 Screenshot of difftap rules
-![Screenshot from 2024-11-13 17-18-36](https://github.com/user-attachments/assets/2fd8de30-0e76-400a-bb4b-eaddc7c66981)
 
 
 
 Screenshot of difftap rules
-![Screenshot from 2024-11-13 16-41-44](https://github.com/user-attachments/assets/d17f05d7-27b9-4029-a7d4-102ac77bd3f0)
 
 Incorrectly implemented
-![Screenshot from 2024-11-13 18-35-39](https://github.com/user-attachments/assets/cfa65c5d-2e23-4ee4-8fb4-083a42afd35c)
 
 
 Commands to run in tkcon window
@@ -467,31 +447,10 @@ drc why
 ```
 
 Screenshot of magic window with rule implemented showing no errors found 
-![Screenshot from 2024-11-13 18-42-30](https://github.com/user-attachments/assets/e3bd8f45-44dd-4210-a316-1d3fa3900368)
 
 
 
-
-
-
-
-
-
-
-
-
-  </details>
-
-
-
-
-
-
-
- <details>
-  <summary>Day4 </summary>
-
-  ## Pre-Layout timing analysis and Importance of good clock tree:
+## Day4: Pre-Layout timing analysis and Importance of good clock tree:
 ## Final steps for RTL2GDS using tritonRoute and openSTA:
 1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
 
@@ -511,7 +470,7 @@ magic -T sky130A.tech sky130_inv.mag &
 ```
 
 Screenshot of tracks.info of sky130_fd_sc_hd
-![Screenshot from 2024-11-13 19-07-41](https://github.com/user-attachments/assets/5b624a55-1a8d-414c-b78f-3830e6ba36f6)
+
 
 Commands for tkcon window to set grid as tracks of locali layer
 ```
@@ -522,10 +481,10 @@ help grid
 grid 0.46um 0.34um 0.23um 0.17um
 ```
 Screenshot of commands run
-![Screenshot from 2024-11-13 19-12-45](https://github.com/user-attachments/assets/aaaa6449-2bf3-4dc3-b226-3f123a91f527)
+
 
 Condition 1 verified
-![Screenshot from 2024-11-13 19-12-03](https://github.com/user-attachments/assets/39f519a6-2d1f-49d8-827b-34f0076f880b)
+
 
 
 
@@ -549,20 +508,4 @@ Condition 3 verified
   H e i g h t   o f   s t a n d a r d   c e l l = 2.72   u m = 0.34 ∗ 8 
 
 
-
-
-</details>
-
-
-
- <details>
-  <summary>Day5 </summary>
-
-
-  
-
- 
-
-
-
-</details>
+## Day5: Final steps for RTL2GDS using tritonRoute and openSTA
