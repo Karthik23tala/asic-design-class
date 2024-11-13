@@ -149,23 +149,25 @@ Snapshot:
 
 Equidistant placement of ports: 
 
-
+![image](https://github.com/user-attachments/assets/1800c388-5581-4404-8b30-00f7e1bfd5f9)
 
 Port layer as set through config.tcl 
 
+![image](https://github.com/user-attachments/assets/3db88723-c834-498a-b462-890e98674dd0)
 
-
+![image](https://github.com/user-attachments/assets/3ef16abc-f3a3-4374-8444-e62555ef4ffc)
 
 Decap Cells and Tap Cells
 
-
+![image](https://github.com/user-attachments/assets/4b601c5a-4e80-4e47-a77b-fa3cc8273de5)
 
 Diagonally equidistant Tap cells
 
-
+![image](https://github.com/user-attachments/assets/1cbdacd2-a158-49c2-9e3f-80d4ad2d1616)
 
 Unplaced standard cells at the origin
 
+![image](https://github.com/user-attachments/assets/727d50f5-c300-40a0-b8d8-b45d36491565)
 
 
 ## 4. Run ```picorv32a``` design congestion aware placement using OpenLANE flow and generate necessary outputs. Command to run placement
@@ -174,13 +176,8 @@ Unplaced standard cells at the origin
 # Congestion aware placement by default
 run_placement
 ```
-![Screenshot from 2024-11-12 01-10-46](https://github.com/user-attachments/assets/f6950154-e31f-4166-9c6a-5f21f96f16f9)
 
-![Screenshot from 2024-11-12 01-11-54](https://github.com/user-attachments/assets/2b6021b3-2ae3-469e-8209-f6f4e5d4dfa8)
-
-
-
-
+![image](https://github.com/user-attachments/assets/d115c343-9413-4979-a8c1-35eef98c6470)
 
 5. Load generated placement def in magic tool and explore the placement. Commands to load placement def in magic in another terminal
 
@@ -193,15 +190,13 @@ cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
 ```
 
+![image](https://github.com/user-attachments/assets/3f6f9760-eb8c-4ddb-9aa9-00431dfa85da)
 
-![Screenshot from 2024-11-12 01-18-34](https://github.com/user-attachments/assets/0e04adda-bff1-40fa-9955-575da9261751)
-
-![Screenshot from 2024-11-12 01-19-36](https://github.com/user-attachments/assets/9b3bec25-be46-4ce9-852c-6f20393e4960)
-
+![image](https://github.com/user-attachments/assets/fd6bcdb0-34a4-4cd7-81ce-1ccf8cab526e)
 
 Standard cells legally placed 
-![Screenshot from 2024-11-12 01-23-40](https://github.com/user-attachments/assets/2393d0ca-16b9-4369-9db4-fd02cff38515)
 
+![image](https://github.com/user-attachments/assets/d4f7a58a-5eec-4d9a-8f66-41ce3b8f96cc)
 
 Commands to exit from current run
 
@@ -212,19 +207,276 @@ exit
 # Exit from OpenLANE flow docker sub-system
 exit
 ```
+## Day3: Design Library Cell Using Magic Layout and Cell characterization:
+
+Tasks:
+
+1.Clone custom inverter standard cell design from github repository: Standard cell design and characterization using OpenLANE flow.
+2.Load the custom inverter layout in magic and explore.
+3.Spice extraction of inverter in magic.
+4.Editing the spice model file for analysis through simulation.
+5.Post-layout ngspice simulations.
+6.Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
+
+1. Clone custom inverter standard cell design from github repository
+```
+# Change directory to openlane
+cd Desktop/work/tools/openlane_working_dir/openlane
+
+# Clone the repository with custom inverter design
+git clone https://github.com/nickson-jose/vsdstdcelldesign
+
+# Change into repository directory
+cd vsdstdcelldesign
+
+# Copy magic tech file to the repo directory for easy access
+cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech .
+
+# Check contents whether everything is present
+ls
+
+# Command to open custom inverter layout in magic
+magic -T sky130A.tech sky130_inv.mag &
+```
+
+![image](https://github.com/user-attachments/assets/e7648c0f-8630-4c39-b381-db4fcefc2c35)
 
 
-  </details>
+
+2.Load the custom inverter layout in magic and explore.
+
+Screenshot of custom inverter layout in magic
+
+![image](https://github.com/user-attachments/assets/668f5167-5beb-4906-8875-65535b10e6a6)
+
+PMOS identified
+
+![image](https://github.com/user-attachments/assets/b41d8d61-c3a0-40dd-a716-c4e9d0f575d4)
+
+NMOS identified
+
+![image](https://github.com/user-attachments/assets/4916d7dd-e65f-4a42-a9c2-ed76f7afc2f4)
+
+Output Y connectivity to PMOS and NMOS drain verified 
+
+![image](https://github.com/user-attachments/assets/46a02a36-4d2d-4799-969a-ea3d51abbaf4)
+
+PMOS source connectivity to VDD (here VPWR) verified
+
+![image](https://github.com/user-attachments/assets/8e681cd2-4593-444d-bf22-ada5378234f5)
+
+NMOS source connectivity to VSS (here VGND) verified
+
+![image](https://github.com/user-attachments/assets/ce71a5b4-92f0-4e5b-a3c0-d462b8311d26)
+
+Deleting necessary layout part to see DRC error
+
+![image](https://github.com/user-attachments/assets/86e62d78-e93f-4e05-ad89-c1538fec790c)
+
+3.Spice extraction of inverter in magic.
+
+Commands for spice extraction of the custom inverter layout to be used in tkcon window of magic
+```
+# Check current directory
+pwd
+
+# Extraction command to extract to .ext format
+extract all
+
+# Before converting ext to spice this command enable the parasitic extraction also
+ext2spice cthresh 0 rthresh 0
+
+# Converting to ext to spice
+ext2spice
+```
+
+Screenshot of tkcon window after running above commands
+
+![image](https://github.com/user-attachments/assets/22509ed8-159d-4940-90f8-f765decf91fc)
+
+
+Screenshot of the Spice file creation and contents:
+
+![image](https://github.com/user-attachments/assets/f0833d32-d6c8-4211-8c63-a2ac58a19140)
+
+![image](https://github.com/user-attachments/assets/d9e55326-0c7a-48d3-8bf8-27f3049419ab)
+
+4.Editing the spice model file for analysis through simulation.
+
+Measuring unit distance in layout grid
+
+![image](https://github.com/user-attachments/assets/21688d6f-4def-4e8f-8643-065642059d14)
+
+Final edited spice file ready for ngspice simulation
+
+![image](https://github.com/user-attachments/assets/bd03a205-7973-42ac-89c5-1705139fb923)
+
+
+5.Post-layout ngspice simulations.
+
+Commands for ngspice simulation
+```
+# Command to directly load spice file for simulation to ngspice
+ngspice sky130_inv.spice
+
+# Now that we have entered ngspice with the simulation spice file loaded we just have to load the plot
+plot y vs time a
+```
+
+Screenshots of ngspice run
+
+
+
+Screenshot of generated plot
+![Screenshot from 2024-11-13 12-59-37](https://github.com/user-attachments/assets/2ae82950-601f-4914-a09e-2f9586d4b
+
+* Rise transition time calculation Rise Transition Time = Time taken for output to rise to 80% − Time taken for output to rise to 20%
+* 20% of output (3.3V) = 0.66V 80% of output (3.3V) = 2.64V
+
+20% Screenshots
+![Screenshot from 2024-11-13 14-53-45](https://github.com/user-attachments/assets/2c7e302e-8805-4a18-866a-f1a015b85e3c)
+
+80% Screenshot 
+![Screenshot from 2024-11-13 14-54-51](https://github.com/user-attachments/assets/af104a20-1fd3-4d79-a198-a6f139975682)
+
+
+### Rise Transition Time = 2.2393 - 2.1799 = 0.0594 ns = 59.40 ps
+
+* Fall Transition Time = Time taken for output to fall to 80% − Time taken for output to fall to 20% 
+* 20% of output (3.3V) = 0.66V 20% of output (3.3V) = 2.64V
+
+20% Screenshots
+![Screenshot from 2024-11-13 14-59-19](https://github.com/user-attachments/assets/01da40be-7097-4fd2-ab50-9f8f69b2646d)
+
+
+80% Screenshot 
+![Screenshot from 2024-11-13 15-01-43](https://github.com/user-attachments/assets/b8565c75-ae8a-4bb2-ad36-40289e9cdffe)
+
+### Fall Transition Time = 4.09345 - 4.05088 = 0.04257 ns = 42.57 ps
+
+* Rise Cell Delay Calculation Rise cell delay = Time taken by output to rise to 50% − Time taken by input to fall to 50% 
+* 50 % of 3.3V = 1.65V
+
+50% Screenshots
+![Screenshot from 2024-11-13 15-08-06](https://github.com/user-attachments/assets/35117eb5-cf1f-4593-8d82-3e61b47b8907)
+
+### Rise cell delay = 2.2075 - 2.1489 = 0.0586 ns = 58.60 ps
+
+* Fall Cell Delay Calculation Fall cell delay = Time taken by output to fall to 50% − Time taken by input to rise to 50% 
+* 50 % of 3.3V = 1.65V
+
+50% Screenshots
+![Screenshot from 2024-11-13 15-15-50](https://github.com/user-attachments/assets/a123686f-3d57-4a90-9839-4d946422cbde)
+
+### Fall cell delay = 4.0765−4.05 = 0.0265 ns = 26.50 ps
+
+6.Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
+
+Link to Sky130 Periphery rules: https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html
+
+Commands to download and view the corrupted skywater process magic tech file and associated files to perform drc corrections
+```
+# Change to home directory
+cd
+
+# Command to download the lab files
+wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+
+# Since lab file is compressed command to extract it
+tar xfz drc_tests.tgz
+
+# Change directory into the lab folder
+cd drc_tests
+
+# List all files and directories present in the current directory
+ls -al
+
+# Command to view .magicrc file
+gvim .magicrc
+
+# Command to open magic tool in better graphics
+magic -d XR &
+```
+
+Screenshots of commands run
+![Screenshot from 2024-11-13 15-23-06](https://github.com/user-attachments/assets/a1c23949-2b4c-4b54-93f7-d9700f876130)
+
+
+Screenshot of .magicrc file 
+![Screenshot from 2024-11-13 15-23-27](https://github.com/user-attachments/assets/ffe1fda2-5260-41ce-a8ae-b0e5386206a2)
+
+
+
+Incorrectly implemented poly.9 simple rule correction
+
+Screenshot of poly rules
+![Screenshot from 2024-11-13 15-29-31](https://github.com/user-attachments/assets/c39d49ab-07a1-40b4-b6a1-f07c6276df79)
+
+Incorrectly implemented poly.9 rule no drc violation even though spacing < 0.48u
+![Screenshot from 2024-11-13 18-23-47](https://github.com/user-attachments/assets/10aafd85-b40c-40f6-b902-c7fc28be4919)
+
+![Screenshot from 2024-11-13 15-52-18](https://github.com/user-attachments/assets/d4eecd11-20d7-4edb-9bdf-a41b6f59617c)
+
+
+New commands inserted in sky130A.tech file to update drc
+![Screenshot from 2024-11-13 16-06-31](https://github.com/user-attachments/assets/fbcce407-f21b-4787-a5b2-98166763343d)
+![Screenshot from 2024-11-13 16-08-48](https://github.com/user-attachments/assets/461779c2-c5e1-4591-bb45-bebd35980baa)
+
+Commands to run in tkcon window
+```
+# Loading updated tech file
+tech load sky130A.tech
+
+# Must re-run drc check to see updated drc errors
+drc check
+
+# Selecting region displaying the new errors and getting the error messages 
+drc why
+```
+
+Screenshot of magic window with rule implemented
+![Screenshot from 2024-11-13 16-34-05](https://github.com/user-attachments/assets/bf21f89d-2795-4a4d-957b-aa53b78b47a0)
+
+Incorrectly implemented difftap.2 simple rule correction
+
+Screenshot of difftap rules
+![Screenshot from 2024-11-13 17-18-36](https://github.com/user-attachments/assets/2fd8de30-0e76-400a-bb4b-eaddc7c66981)
+
+
+
+Screenshot of difftap rules
+![Screenshot from 2024-11-13 16-41-44](https://github.com/user-attachments/assets/d17f05d7-27b9-4029-a7d4-102ac77bd3f0)
+
+Incorrectly implemented
+![Screenshot from 2024-11-13 18-35-39](https://github.com/user-attachments/assets/cfa65c5d-2e23-4ee4-8fb4-083a42afd35c)
+
+
+Commands to run in tkcon window
+```
+# Loading updated tech file
+tech load sky130A.tech
+
+# Change drc style to drc full
+drc style drc(full)
+
+# Must re-run drc check to see updated drc errors
+drc check
+
+# Selecting region displaying the new errors and getting the error messages 
+drc why
+```
+
+Screenshot of magic window with rule implemented showing no errors found 
+![Screenshot from 2024-11-13 18-42-30](https://github.com/user-attachments/assets/e3bd8f45-44dd-4210-a316-1d3fa3900368)
 
 
 
 
 
 
- <details>
-  <summary>Day3 </summary>
 
-  ## Design Library Cell Using Magic Layout and Cell characterization:
+
+
 
 
 
@@ -240,6 +492,61 @@ exit
   <summary>Day4 </summary>
 
   ## Pre-Layout timing analysis and Importance of good clock tree:
+## Final steps for RTL2GDS using tritonRoute and openSTA:
+1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
+
+Conditions to be verified before moving forward with custom designed cell layout:
+
+    Condition 1: The input and output ports of the standard cell should lie on the intersection of the vertical and horizontal tracks.
+    Condition 2: Width of the standard cell should be odd multiples of the horizontal track pitch.
+    Condition 3: Height of the standard cell should be even multiples of the vertical track pitch.
+
+Commands to open the custom inverter layout
+```
+# Change directory to vsdstdcelldesign
+cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
+
+# Command to open custom inverter layout in magic
+magic -T sky130A.tech sky130_inv.mag &
+```
+
+Screenshot of tracks.info of sky130_fd_sc_hd
+![Screenshot from 2024-11-13 19-07-41](https://github.com/user-attachments/assets/5b624a55-1a8d-414c-b78f-3830e6ba36f6)
+
+Commands for tkcon window to set grid as tracks of locali layer
+```
+# Get syntax for grid command
+help grid
+
+# Set grid values accordingly
+grid 0.46um 0.34um 0.23um 0.17um
+```
+Screenshot of commands run
+![Screenshot from 2024-11-13 19-12-45](https://github.com/user-attachments/assets/aaaa6449-2bf3-4dc3-b226-3f123a91f527)
+
+Condition 1 verified
+![Screenshot from 2024-11-13 19-12-03](https://github.com/user-attachments/assets/39f519a6-2d1f-49d8-827b-34f0076f880b)
+
+
+
+
+Condition 2 verified
+ H o r i z o n t a l   t r a c k   p i t c h = 0.46   u m 
+ 
+![Screenshot from 2024-11-13 19-04-10](https://github.com/user-attachments/assets/a0bdba9f-1229-4940-9740-62b5442f5884)
+ W i d t h   o f   s t a n d a r d   c e l l = 1.38   u m = 0.46 ∗ 3 
+
+
+
+ 
+
+
+
+Condition 3 verified
+ V e r t i c a l   t r a c k   p i t c h = 0.34   u m 
+ ![Screenshot from 2024-11-13 19-19-52](https://github.com/user-attachments/assets/7751fe42-5bd2-43ea-af55-9be018dec508)
+
+  H e i g h t   o f   s t a n d a r d   c e l l = 2.72   u m = 0.34 ∗ 8 
 
 
 
@@ -251,8 +558,11 @@ exit
  <details>
   <summary>Day5 </summary>
 
-## Final steps for RTL2GDS using tritonRoute and openSTA:
 
+  
 
  
+
+
+
 </details>
