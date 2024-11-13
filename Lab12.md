@@ -325,186 +325,22 @@ plot y vs time a
 
 Screenshots of ngspice run
 
-
+![image](https://github.com/user-attachments/assets/ed86ebda-275a-4efe-9416-7dcaa9d37da0)
 
 Screenshot of generated plot
-![Screenshot from 2024-11-13 12-59-37](https://github.com/user-attachments/assets/2ae82950-601f-4914-a09e-2f9586d4b
+
+![image](https://github.com/user-attachments/assets/bc17b374-2102-41be-b0c0-28227afbb92e)
+
 
 * Rise transition time calculation Rise Transition Time = Time taken for output to rise to 80% − Time taken for output to rise to 20%
 * 20% of output (3.3V) = 0.66V 80% of output (3.3V) = 2.64V
 
-20% Screenshots
-
-80% Screenshot 
-
-
-### Rise Transition Time = 2.2393 - 2.1799 = 0.0594 ns = 59.40 ps
 
 * Fall Transition Time = Time taken for output to fall to 80% − Time taken for output to fall to 20% 
 * 20% of output (3.3V) = 0.66V 20% of output (3.3V) = 2.64V
 
-20% Screenshots
-
-
-80% Screenshot 
-
-### Fall Transition Time = 4.09345 - 4.05088 = 0.04257 ns = 42.57 ps
-
 * Rise Cell Delay Calculation Rise cell delay = Time taken by output to rise to 50% − Time taken by input to fall to 50% 
 * 50 % of 3.3V = 1.65V
 
-50% Screenshots
-
-### Rise cell delay = 2.2075 - 2.1489 = 0.0586 ns = 58.60 ps
-
 * Fall Cell Delay Calculation Fall cell delay = Time taken by output to fall to 50% − Time taken by input to rise to 50% 
 * 50 % of 3.3V = 1.65V
-
-50% Screenshots
-
-### Fall cell delay = 4.0765−4.05 = 0.0265 ns = 26.50 ps
-
-6.Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
-
-Link to Sky130 Periphery rules: https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html
-
-Commands to download and view the corrupted skywater process magic tech file and associated files to perform drc corrections
-```
-# Change to home directory
-cd
-
-# Command to download the lab files
-wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
-
-# Since lab file is compressed command to extract it
-tar xfz drc_tests.tgz
-
-# Change directory into the lab folder
-cd drc_tests
-
-# List all files and directories present in the current directory
-ls -al
-
-# Command to view .magicrc file
-gvim .magicrc
-
-# Command to open magic tool in better graphics
-magic -d XR &
-```
-
-Screenshots of commands run
-
-
-Screenshot of .magicrc file 
-
-Incorrectly implemented poly.9 simple rule correction
-
-Screenshot of poly rules
-
-Incorrectly implemented poly.9 rule no drc violation even though spacing < 0.48u
-
-
-New commands inserted in sky130A.tech file to update drc
-
-Commands to run in tkcon window
-```
-# Loading updated tech file
-tech load sky130A.tech
-
-# Must re-run drc check to see updated drc errors
-drc check
-
-# Selecting region displaying the new errors and getting the error messages 
-drc why
-```
-
-Screenshot of magic window with rule implemented
-
-Incorrectly implemented difftap.2 simple rule correction
-
-Screenshot of difftap rules
-
-
-
-Screenshot of difftap rules
-
-Incorrectly implemented
-
-
-Commands to run in tkcon window
-```
-# Loading updated tech file
-tech load sky130A.tech
-
-# Change drc style to drc full
-drc style drc(full)
-
-# Must re-run drc check to see updated drc errors
-drc check
-
-# Selecting region displaying the new errors and getting the error messages 
-drc why
-```
-
-Screenshot of magic window with rule implemented showing no errors found 
-
-
-
-## Day4: Pre-Layout timing analysis and Importance of good clock tree:
-## Final steps for RTL2GDS using tritonRoute and openSTA:
-1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
-
-Conditions to be verified before moving forward with custom designed cell layout:
-
-    Condition 1: The input and output ports of the standard cell should lie on the intersection of the vertical and horizontal tracks.
-    Condition 2: Width of the standard cell should be odd multiples of the horizontal track pitch.
-    Condition 3: Height of the standard cell should be even multiples of the vertical track pitch.
-
-Commands to open the custom inverter layout
-```
-# Change directory to vsdstdcelldesign
-cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
-
-# Command to open custom inverter layout in magic
-magic -T sky130A.tech sky130_inv.mag &
-```
-
-Screenshot of tracks.info of sky130_fd_sc_hd
-
-
-Commands for tkcon window to set grid as tracks of locali layer
-```
-# Get syntax for grid command
-help grid
-
-# Set grid values accordingly
-grid 0.46um 0.34um 0.23um 0.17um
-```
-Screenshot of commands run
-
-
-Condition 1 verified
-
-
-
-
-
-Condition 2 verified
- H o r i z o n t a l   t r a c k   p i t c h = 0.46   u m 
- 
-
- W i d t h   o f   s t a n d a r d   c e l l = 1.38   u m = 0.46 ∗ 3 
-
-
-
- 
-
-
-
-Condition 3 verified
- V e r t i c a l   t r a c k   p i t c h = 0.34   u m 
-
-  H e i g h t   o f   s t a n d a r d   c e l l = 2.72   u m = 0.34 ∗ 8 
-
-
-## Day5: Final steps for RTL2GDS using tritonRoute and openSTA
