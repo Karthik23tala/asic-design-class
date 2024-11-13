@@ -492,7 +492,7 @@ Condition 1 verified
 Condition 2 verified
  H o r i z o n t a l   t r a c k   p i t c h = 0.46   u m 
  
-![Screenshot from 2024-11-13 19-04-10](https://github.com/user-attachments/assets/a0bdba9f-1229-4940-9740-62b5442f5884)
+
  W i d t h   o f   s t a n d a r d   c e l l = 1.38   u m = 0.46 ∗ 3 
 
 
@@ -503,7 +503,6 @@ Condition 2 verified
 
 Condition 3 verified
  V e r t i c a l   t r a c k   p i t c h = 0.34   u m 
- ![Screenshot from 2024-11-13 19-19-52](https://github.com/user-attachments/assets/7751fe42-5bd2-43ea-af55-9be018dec508)
 
   H e i g h t   o f   s t a n d a r d   c e l l = 2.72   u m = 0.34 ∗ 8 
 
