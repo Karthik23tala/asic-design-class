@@ -53,7 +53,7 @@ Output: For OFast
 
 ## ASIC Lab 2 Report (19/07/2024)
 
-### Problem Statement
+### Problem Statement:
 Compile the C code using Spike Simulator
 
 #### Task: Compile the C code using Spike Simulator instruction by instruction
