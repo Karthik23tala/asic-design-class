@@ -645,7 +645,7 @@ Terminal Screenshots for the above commands
 
 ![image](https://github.com/user-attachments/assets/217b47d3-859b-4e73-ba99-7896fa4a3ac2)
 
-![image](https://github.com/user-attachments/assets/05a1f3ad-c9e9-4da5-86e3-31be2c86681c)
+![image](https://github.com/user-attachments/assets/bc114bb2-83ba-40cb-a9bb-76690de57d95)
 
 
 7. Remove/reduce the newly introduced violations with the introduction of custom inverter cell by modifying design parameters.
@@ -653,7 +653,7 @@ Noting down current design values generated before modifying parameters to impro
 
 ![image](https://github.com/user-attachments/assets/98905dab-4d9d-4623-8cf2-e2668132cd99)
 
-![image](https://github.com/user-attachments/assets/d6070154-a9b3-4a34-a0fe-35d7a179e715)
+![image](https://github.com/user-attachments/assets/a2ed0ed5-fe97-4e07-b15a-76edffa01a75)
 
 Commands to view and change parameters to improve timing and run synthesis
 ```
@@ -791,7 +791,7 @@ Terminal screenshots
 
 ![image](https://github.com/user-attachments/assets/8686ac91-5a4a-4003-9c66-6bd99d86e58d)
 
-![image](https://github.com/user-attachments/assets/d89d9431-5c63-487a-a528-26e9db59bfdb)
+![image](https://github.com/user-attachments/assets/c73fd565-d953-4eef-90fa-ac98dd187c90)
 
 Newly created pre_sta.conf for STA analysis in openlane directory
 
