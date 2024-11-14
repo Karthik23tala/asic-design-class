@@ -493,10 +493,11 @@ Screenshot of magic window with rule implemented showing no errors found
 1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
 
 Conditions to be verified before moving forward with custom designed cell layout:
-
+```
     Condition 1: The input and output ports of the standard cell should lie on the intersection of the vertical and horizontal tracks.
     Condition 2: Width of the standard cell should be odd multiples of the horizontal track pitch.
     Condition 3: Height of the standard cell should be even multiples of the vertical track pitch.
+```
 
 Commands to open the custom inverter layout
 ```
@@ -504,10 +505,12 @@ Commands to open the custom inverter layout
 cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
 
 # Command to open custom inverter layout in magic
-magic -T sky130A.tech sky130_tusinv.mag &
+magic -T sky130A.tech sky130_karinv.mag &
 ```
 
 Screenshot of tracks.info of sky130_fd_sc_hd
+
+![image](https://github.com/user-attachments/assets/6118c125-c458-4baa-bfa7-04030b91d857)
 
 
 Commands for tkcon window to set grid as tracks of locali layer
@@ -520,55 +523,36 @@ grid 0.46um 0.34um 0.23um 0.17um
 ```
 Screenshot of commands run
 
+![image](https://github.com/user-attachments/assets/f2946451-bb54-4851-9195-f17d4b25aa4a)
 
 Condition 1 verified
 
-
-
-
-
-
+![image](https://github.com/user-attachments/assets/78813ac8-f840-44f7-8d8d-1375ae402616)
 
 Condition 2 verified
- Horizontal track pitch=0.46 u m 
- 
 
-
- Widh  of standard   cell=1.39 um = 0.463 ∗ 3 
-
- 
-
-
-
- 
-
-
+![image](https://github.com/user-attachments/assets/2c931cc0-c265-4a2a-a385-2ddb34420b79)
 
 Condition 3 verified
 
- Vertical   track   pitch = 0.34 u m 
-
-
-
-  Height   of   standard   cell = 2.72 um = 0.34 ∗ 8 
+![image](https://github.com/user-attachments/assets/da21e84a-03bd-4547-aff8-d44c69625257)
 
 2. Save the finalized layout with custom name and open it.
 
 Command for tkcon window to save the layout with custom name
 ```
 # Command to save as
-save sky130_tusinv.mag
+save sky130_karinv.mag
 
 Command to open the newly saved layout
 
 # Command to open custom inverter layout in magic
-magic -T sky130A.tech sky130_tusinv.mag &
+magic -T sky130A.tech sky130_karinv.mag &
 ```
 
 Screenshot of newly saved layout
 
-
-
+![image](https://github.com/user-attachments/assets/4e83a49a-472a-4217-9caa-7ba027914cba)
 
 3. Generate lef from the layout.
 
@@ -579,9 +563,11 @@ lef write
 ```
 Screenshot of command run
 
+![image](https://github.com/user-attachments/assets/2c629971-cca0-46f4-8f08-27de5bac7641)
 
 Screenshot of newly created lef file
 
+![image](https://github.com/user-attachments/assets/e28e8e2c-1116-4265-aaaa-195c3df44302)
 
 4. Copy the newly generated lef and associated required lib files to 'picorv32a' design 'src' directory.
 
@@ -589,7 +575,7 @@ Commands to copy necessary files to 'picorv32a' design 'src' directory
 
 ```
 # Copy lef file
-cp sky130_vsdinv.lef ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+cp sky130_karinv.lef ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
 
 # List and check whether it's copied
 ls ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
@@ -601,6 +587,10 @@ cp libs/sky130_fd_sc_hd__* ~/Desktop/work/tools/openlane_working_dir/openlane/de
 ls ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
 ```
 Screenshot of commands run
+
+![image](https://github.com/user-attachments/assets/34b66ac9-a751-4734-b969-f08bcd5f3000)
+
+![image](https://github.com/user-attachments/assets/e836820f-fa03-4daa-8d4e-d7ecdd4640b1)
 
 
 5. Edit 'config.tcl' to change lib file and add the new extra lef into the openlane flow.
@@ -617,6 +607,7 @@ set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/sr
 
 Edited config.tcl to include the added lef and change library to ones we added in src directory
 
+![image](https://github.com/user-attachments/assets/ffdd8cf6-8145-48c1-8512-9bbd572560f2)
 
 6. Run openlane flow synthesis with newly inserted custom inverter cell.
 ```
@@ -648,10 +639,21 @@ run_synthesis
 
 Terminal Screenshots for the above commands
 
+![image](https://github.com/user-attachments/assets/35a39901-3508-4819-8fab-facee4f036a6)
+
+![image](https://github.com/user-attachments/assets/1a712ed5-5ba7-41f5-a6f2-3691e3718c07)
+
+![image](https://github.com/user-attachments/assets/217b47d3-859b-4e73-ba99-7896fa4a3ac2)
+
+![image](https://github.com/user-attachments/assets/05a1f3ad-c9e9-4da5-86e3-31be2c86681c)
+
 
 7. Remove/reduce the newly introduced violations with the introduction of custom inverter cell by modifying design parameters.
 Noting down current design values generated before modifying parameters to improve timing
 
+![image](https://github.com/user-attachments/assets/98905dab-4d9d-4623-8cf2-e2668132cd99)
+
+![image](https://github.com/user-attachments/assets/d6070154-a9b3-4a34-a0fe-35d7a179e715)
 
 Commands to view and change parameters to improve timing and run synthesis
 ```
@@ -684,17 +686,19 @@ echo $::env(SYNTH_DRIVING_CELL)
 run_synthesis
 ```
 
-Screenshot of merged.lef in tmp directory with our custom inverter as macro
+Screenshot of merged.lef in tmp directory with our custom inverter ```karinv``` as macro
 
-
-
+![image](https://github.com/user-attachments/assets/b8f2117c-fc63-4417-9d89-6612c7e52222)
 
 Terminal Screenshots for the above commands
 
+![image](https://github.com/user-attachments/assets/27ee0a7c-46eb-4514-95c1-643250735638)
 
 Comparing to previously noted run values area has increased and worst negative slack has become 0
 
+![image](https://github.com/user-attachments/assets/2dbde6c1-606e-4d87-9571-778e83d58641)
 
+![image](https://github.com/user-attachments/assets/dd5b8627-be26-423d-8205-5d92800d4f55)
 
 8. Once synthesis has accepted our custom inverter we can now run floorplan and placement and verify the cell is accepted in PnR flow.
 
@@ -704,23 +708,17 @@ Now that our custom inverter is properly accepted in synthesis we can now run fl
 run_floorplan
 ```
 
-Screenshots of command run
-
-
-
-Since we are facing unexpected un-explainable error while using run_floorplan command, we can instead use the following set of commands available based on information from Desktop/work/tools/openlane_working_dir/openlane/scripts/tcl_commands/floorplan.tcl and also based on Floorplan Commands section in Desktop/work/tools/openlane_working_dir/openlane/docs/source/OpenLANE_commands.md
+In case of the above command throwing any unexpected error we can use the following series of commands one by one which is essentially same as that of running ```run_floorplan``` command.
 
 ```
-# Follwing commands are alltogather sourced in "run_floorplan" command
 init_floorplan
 place_io
 tap_decap_or
 ```
 
-
 Terminal Screenshots for the above commands
 
-
+![image](https://github.com/user-attachments/assets/e3816ca7-93e6-4daf-a51f-ab2dd62098e2)
 
 Now that floorplan is done we can do placement using following command
 ```
@@ -729,8 +727,11 @@ run_placement
 ```
 
 
-Screenshots of command run
+Terminal Screenshots for the above commands
 
+![image](https://github.com/user-attachments/assets/fa2f9b62-aba3-485d-8f39-c779d41ebb1b)
+
+![image](https://github.com/user-attachments/assets/54bcb9d4-0d92-47a8-b1c1-31c19a42a40d)
 
 
 Commands to load placement def in magic in another terminal
@@ -744,11 +745,12 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 
 Screenshot of placement def in magic
 
+![image](https://github.com/user-attachments/assets/7abd2535-e12d-4e38-883b-16af3c11ed1a)
 
 
-Screenshot of custom inverter inserted in placement def with proper abutment
+Screenshot of custom inverter ```karinv``` inserted in placement def with proper abutment
 
-
+![image](https://github.com/user-attachments/assets/894820b6-77a4-4fe0-b76e-ee9ae1e2f191)
 
 9. Do Post-Synthesis timing analysis with OpenSTA tool.
 
@@ -783,16 +785,21 @@ set ::env(SYNTH_SIZING) 1
 run_synthesis
 ```
 
-Commands run final screenshot
+Terminal screenshots
 
+![image](https://github.com/user-attachments/assets/a3bcb593-2d2b-4e1f-982d-9e35e9bdcc89)
+
+![image](https://github.com/user-attachments/assets/8686ac91-5a4a-4003-9c66-6bd99d86e58d)
+
+![image](https://github.com/user-attachments/assets/d89d9431-5c63-487a-a528-26e9db59bfdb)
 
 Newly created pre_sta.conf for STA analysis in openlane directory
 
+![image](https://github.com/user-attachments/assets/1b7140ea-2169-4d3c-9cad-7ec876e31835)
 
 Newly created my_base.sdc for STA analysis in openlane/designs/picorv32a/src directory based on the file openlane/scripts/base.sdc
 
-
-
+![image](https://github.com/user-attachments/assets/1af7de15-7600-4a8f-8a3a-d371c63c3915)
 
 Commands to run STA in another terminal
 ```
@@ -804,6 +811,13 @@ sta pre_sta.conf
 ```
 Terminal Screenshots for the above commands
 
+![image](https://github.com/user-attachments/assets/49bffa18-3e9c-42f7-840d-022045ddc82a)
+
+![image](https://github.com/user-attachments/assets/c0dd04dd-b13c-4683-91eb-113303561e5c)
+
+![image](https://github.com/user-attachments/assets/79c14699-8a39-4a7d-b1e3-6f26273384ae)
+
+![image](https://github.com/user-attachments/assets/32922fa1-2b06-4208-85f9-018f9edce00b)
 
 Since more fanout is causing more delay we can add parameter to reduce fanout and do synthesis again
 
@@ -828,8 +842,14 @@ echo $::env(SYNTH_DRIVING_CELL)
 # Now that the design is prepped and ready, we can run synthesis using following command
 run_synthesis
 ```
-Commands run final screenshot
+Terminal Screenshots
 
+![image](https://github.com/user-attachments/assets/462af278-45e3-439b-b936-5f2b81acfd05)
+
+![image](https://github.com/user-attachments/assets/e2ec6e43-4cdc-47a4-9d12-532e627b7fd0)
+
+
+![image](https://github.com/user-attachments/assets/5900dfa3-eea3-4307-a98f-50371a481fd8)
 
 
 10. Make timing ECO fixes to remove all violations.
