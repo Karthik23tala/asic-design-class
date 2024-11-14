@@ -1146,15 +1146,6 @@ echo $::env(CTS_CLK_BUFFER_LIST)
 ```
 Terminal Screenshots for the above commands and timing report generated
 
-
-
-</details>
-
-
-
- <details>
-  <summary>Day5 </summary>
-
 ##  Final steps for RTL2GDS using tritonRoute and openSTA 
 
 1. Perform generation of Power Distribution Network (PDN) and explore the PDN layout.
@@ -1210,6 +1201,17 @@ gen_pdn
 
 Screenshots of power distribution network run
 
+![image](https://github.com/user-attachments/assets/1902f5c8-8826-4a14-bdc6-a3ab0905b039)
+
+![image](https://github.com/user-attachments/assets/04ac66d5-6423-48fb-83a2-197d418d2810)
+
+![image](https://github.com/user-attachments/assets/22adbbdf-9d15-4794-8f17-244d89522f70)
+
+![image](https://github.com/user-attachments/assets/6ad4b9e3-05b5-41f8-91af-54aae1cc1342)
+
+![image](https://github.com/user-attachments/assets/e7e5b985-7eec-4194-9067-fdccd7315028)
+
+![image](https://github.com/user-attachments/assets/78401964-26a0-4774-a698-1d32fbe92734)
 
 Commands to load PDN def in magic in another terminal
 ```
@@ -1221,6 +1223,9 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 ```
 Screenshots of PDN def
 
+![image](https://github.com/user-attachments/assets/6ee7fabe-f206-4d5e-b089-58ed495203cf)
+
+![image](https://github.com/user-attachments/assets/53619bfa-0e4f-4a24-bc23-8b00429260e9)
 
 2. Perfrom detailed routing using TritonRoute and explore the routed layout.
 
@@ -1242,7 +1247,7 @@ Screenshots of routing run
 Commands to load routed def in magic in another terminal
 ```
 # Change directory to path containing routed def
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_21-01/results/routing/
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_15-13/results/routing/
 
 # Command to load the routed def in magic tool
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.def &
@@ -1299,5 +1304,3 @@ exit
 ```
 
 Terminal Screenshots for the above commands and timing report generated
-
-
