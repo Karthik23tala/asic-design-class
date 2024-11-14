@@ -655,6 +655,9 @@ Noting down current design values generated before modifying parameters to impro
 
 ![image](https://github.com/user-attachments/assets/a2ed0ed5-fe97-4e07-b15a-76edffa01a75)
 
+<img width="152" alt="image" src="https://github.com/user-attachments/assets/25b4ab8b-5ac7-4e50-8839-25829e60a98c">
+
+
 Commands to view and change parameters to improve timing and run synthesis
 ```
 # Now once again we have to prep design so as to update variables
@@ -791,7 +794,7 @@ Terminal screenshots
 
 ![image](https://github.com/user-attachments/assets/8686ac91-5a4a-4003-9c66-6bd99d86e58d)
 
-![image](https://github.com/user-attachments/assets/c73fd565-d953-4eef-90fa-ac98dd187c90)
+<img width="757" alt="image" src="https://github.com/user-attachments/assets/6f1918b1-95e8-42c3-9f50-eac41bc4a009">
 
 Newly created pre_sta.conf for STA analysis in openlane directory
 
@@ -917,7 +920,8 @@ report_checks -from _29043_ -to _30440_ -through _14506_
 
 Hence the total TNS and WNS after all the optimisations of the gates is as follows:
 
-
+**TNS:  -759.46 to -711.59
+WNS: -24.89 to -23.89 **
 
 
 11. Replace the old netlist with the new netlist generated after timing ECO fix and implement the floorplan, placement and cts.
@@ -1231,7 +1235,9 @@ run_routing
 ```
 Screenshots of routing run
 
+![Screenshot 2024-11-15 033612](https://github.com/user-attachments/assets/e14708fe-87e3-4922-89e1-1faf2d0db6db)
 
+![Screenshot 2024-11-15 033636](https://github.com/user-attachments/assets/78ca8c79-a999-4aea-a96f-6c42ab4cb70c)
 
 Commands to load routed def in magic in another terminal
 ```
@@ -1243,10 +1249,17 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 ```
 Screenshots of routed def
 
+![Screenshot 2024-11-15 035252](https://github.com/user-attachments/assets/0eae5500-cac3-4980-92a5-1926893c8ee7)
 
+![Screenshot 2024-11-15 035325](https://github.com/user-attachments/assets/16a2363e-38ac-4b7f-a952-9891b14f7689)
+
+![Screenshot 2024-11-15 035428](https://github.com/user-attachments/assets/d96f0476-72fe-444f-830f-f977d46c06be)
+
+![Screenshot 2024-11-15 035058](https://github.com/user-attachments/assets/71d4f84b-d3a8-4f06-8e96-b2e741474e7f)
 
 Screenshot of fast route guide present in openlane/designs/picorv32a/runs/13-11_21-01/tmp/routing directory
 
+![Screenshot 2024-11-15 035632](https://github.com/user-attachments/assets/97e0c46a-60d5-4ca2-a9f1-f3b9e6eb362c)
 
 3. Post-Route OpenSTA timing analysis with the extracted parasitics of the route.
 
@@ -1293,3 +1306,11 @@ exit
 ```
 
 Terminal Screenshots for the above commands and timing report generated
+
+![Screenshot 2024-11-15 040222](https://github.com/user-attachments/assets/fcb8299c-5454-4f52-b1e0-0e6731eaa3de)
+
+![Screenshot 2024-11-15 041629](https://github.com/user-attachments/assets/a48c5df9-f9da-49e4-bb67-af3329059353)
+
+<img width="456" alt="image" src="https://github.com/user-attachments/assets/4c6b0f1d-5f28-4812-a51e-6d7315f908cc">
+
+<img width="424" alt="image" src="https://github.com/user-attachments/assets/2eb372d5-f040-4291-96c9-5484f423bb52">
