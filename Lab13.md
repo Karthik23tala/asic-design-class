@@ -182,3 +182,99 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_floorplan
 ![image](https://github.com/user-attachments/assets/664fa2f1-ae31-4878-9a39-b320b29d6da7)
 
 ![image](https://github.com/user-attachments/assets/34b0c0b5-8d98-44bc-8e2f-340a76da036d)
+
+
+Command for Placement:
+
+```
+sudo make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk place
+```
+
+![image](https://github.com/user-attachments/assets/0fe0adda-1127-4e09-b64d-0ab012683336)
+
+![image](https://github.com/user-attachments/assets/de1a7937-305a-4432-ba1f-0800535d250a)
+
+![image](https://github.com/user-attachments/assets/41b825e9-5786-4080-ae44-c2ef521029a7)
+
+![image](https://github.com/user-attachments/assets/4f731423-8892-4dc3-aa43-25e43ede52af)
+
+
+```
+make gui_place
+```
+
+![image](https://github.com/user-attachments/assets/8b121897-0218-4825-b02b-7ea1fed300bf)
+
+![image](https://github.com/user-attachments/assets/076a1ef0-7786-481d-8842-618f0e0b5d64)
+
+Command for CTS:
+
+```
+sudo make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk cts
+```
+
+![image](https://github.com/user-attachments/assets/953a767d-e5fd-46ae-8ecd-c4f808dd98dc)
+
+```
+make gui_cts
+```
+
+![image](https://github.com/user-attachments/assets/cc413d2a-eb8e-454a-9e56-ed13e3b9b2ed)
+
+![image](https://github.com/user-attachments/assets/83d31fe4-5f9d-4954-b9e6-a1a335074913)
+
+Clock Tree Synthesis Screenshots:
+
+![image](https://github.com/user-attachments/assets/8350e52b-d971-4691-af55-b70207f42172)
+
+![image](https://github.com/user-attachments/assets/f4de6fca-7d29-4ac8-8148-3a6d80a3c563)
+
+![image](https://github.com/user-attachments/assets/ccdc7a5c-33a2-49b1-a8fa-de67c3fbdbb5)
+
+Final Layout Commands:
+
+```
+make gui_final
+```
+
+![image](https://github.com/user-attachments/assets/17601d82-6a8f-4219-9643-a4304930a00c)
+
+![image](https://github.com/user-attachments/assets/bd03ec92-a5a7-4ce2-b6fe-74e8e1bc00e4)
+
+![image](https://github.com/user-attachments/assets/e0f1cad9-0cd9-4281-b995-a02c26677529)
+
+![image](https://github.com/user-attachments/assets/bac41511-624d-42d4-92ae-1c1c920fe061)
+
+![image](https://github.com/user-attachments/assets/0c71875b-98c3-4d07-a754-6909defa67c7)
+
+![image](https://github.com/user-attachments/assets/056ebef4-939b-4010-8307-1f4e4de89531)
+
+Commands to get the GTS file in the KLayout 
+
+```
+klayout -e -nn ./platforms/nangate45/FreePDK45.lyt -l ./platforms/nangate45/FreePDK45.lyp ./results/nangate45/gcd/base/6_final.gds
+```
+
+![image](https://github.com/user-attachments/assets/fc9288d7-0d7f-4d6f-8f3c-d0ba03da0b60)
+
+![image](https://github.com/user-attachments/assets/80aff3a9-5224-4196-9d0d-a1b104a8ebbd)
+
+Command for Route:
+
+```
+sudo make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk route
+```
+
+![image](https://github.com/user-attachments/assets/9bb8afc3-ee13-47bf-a704-277d11933a1c)
+
+![image](https://github.com/user-attachments/assets/0c1f6536-f0e9-4d88-8efe-ec4e5a53821a)
+
+GUI for Route:
+
+```
+make gui_route
+```
+
+![image](https://github.com/user-attachments/assets/36757b0e-f655-4163-92ad-4701dba80725)
+
+![image](https://github.com/user-attachments/assets/a554b4cb-4d24-4363-bcba-eec33d7c08a5)
