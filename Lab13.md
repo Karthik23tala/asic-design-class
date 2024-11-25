@@ -79,8 +79,27 @@ make gui_final
 Terminal Screenshots:
 
 
+**Automated RTL-to-GDS Flow for VSDBabySoC**
 
+Initial Setup:
+Create Required Directories
 
+Inside OpenROAD-flow-scripts/flow/designs/sky130hd, create a new directory named vsdbabysoc.
+Similarly, create another directory named vsdbabysoc within OpenROAD-flow-scripts/flow/designs/src. Place all Verilog files for VSDBabySoC in this directory.
+Copy Supporting Files
+
+Copy the folders gds, include, lef, and lib from the VSDBabySoC directory on your system into the newly created vsdbabysoc directory.
+The contents of these folders should include the following:
+gds Folder: Contains avsddac.gds and avsdpll.gds.
+include Folder: Contains the files sandpiper.vh, sandpiper_gen.vh, sp_default.vh, and sp_verilog.vh.
+lef Folder: Contains avsddac.lef and avsdpll.lef.
+lib Folder: Contains avsddac.lib and avsdpll.lib.
+Add Constraints File
+
+Copy the constraints file (vsdbabysoc_synthesis.sdc) from the VSDBabySoC directory on your system into the vsdbabysoc directory.
+Include Configuration Files
+
+Copy the configuration files macro.cfg and pin_order.cfg from the VSDBabySoC directory on your system into the same directory.
 
 Makerfile Screenshots:
 
