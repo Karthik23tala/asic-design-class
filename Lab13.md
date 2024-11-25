@@ -627,25 +627,15 @@ make gui_final
 
 ![image](https://github.com/user-attachments/assets/056ebef4-939b-4010-8307-1f4e4de89531)
 
-Commands to get the GTS file in the KLayout 
-
-```
-klayout -e -nn ./platforms/nangate45/FreePDK45.lyt -l ./platforms/nangate45/FreePDK45.lyp ./results/nangate45/gcd/base/6_final.gds
-```
-
-![image](https://github.com/user-attachments/assets/fc9288d7-0d7f-4d6f-8f3c-d0ba03da0b60)
-
-![image](https://github.com/user-attachments/assets/80aff3a9-5224-4196-9d0d-a1b104a8ebbd)
-
 Command for Route:
 
 ```
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk route
 ```
 
-![image](https://github.com/user-attachments/assets/9bb8afc3-ee13-47bf-a704-277d11933a1c)
+![image](https://github.com/user-attachments/assets/dc7a49cd-ea40-4a24-815f-28c05362440a)
 
-![image](https://github.com/user-attachments/assets/0c1f6536-f0e9-4d88-8efe-ec4e5a53821a)
+![image](https://github.com/user-attachments/assets/090bd5cb-8e66-4b8c-8ab1-18275ab1eac2)
 
 GUI for Route:
 
