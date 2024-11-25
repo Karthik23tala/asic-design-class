@@ -139,7 +139,7 @@ make gui_floorplan
 
 ![image](https://github.com/user-attachments/assets/88a4f464-3526-4287-ad54-6ccc28e2ed38)
 
-![image](https://github.com/user-attachments/assets/2251c758-4fc5-4255-ac6f-86e7a638b824)
+![image](https://github.com/user-attachments/assets/1cd089aa-86ae-41da-bf0a-15e1fdbf18b5)
 
 Command to view the floorplanning:
 
