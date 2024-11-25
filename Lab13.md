@@ -254,9 +254,11 @@ Terminal Commands and Screenshots:
 make gui_floorplan
 ```
 
-![image](https://github.com/user-attachments/assets/88a4f464-3526-4287-ad54-6ccc28e2ed38)
+![image](https://github.com/user-attachments/assets/af89f6fb-f34b-4204-a68a-8ea0e933a3c6)
 
-![image](https://github.com/user-attachments/assets/1cd089aa-86ae-41da-bf0a-15e1fdbf18b5)
+![image](https://github.com/user-attachments/assets/efcb189c-bd62-4bc9-bb00-e26ef92fb562)
+
+![image](https://github.com/user-attachments/assets/432df406-a0f9-4982-a776-9f572f5d3eef)
 
 Command to view the floorplanning:
 
