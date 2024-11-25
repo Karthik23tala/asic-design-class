@@ -78,7 +78,9 @@ make gui_final
 
 Terminal Screenshots:
 
+![image](https://github.com/user-attachments/assets/ba58037d-6148-49f4-bcd4-9bf6a22200ab)
 
+![image](https://github.com/user-attachments/assets/7ddf822a-2ed4-4da4-9a96-631a35c84320)
 
 **Automated RTL-to-GDS Flow for VSDBabySoC**
 
@@ -131,7 +133,7 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
 
 Synthesis Netlist:
 
-![image](https://github.com/user-attachments/assets/4dc001e3-f44d-483f-ae1a-f7ae75ecd07e)
+![image](https://github.com/user-attachments/assets/e0e2fd1f-7788-4bc0-8f17-6ff4ab23b357)
 
 Synthesis Log:
 
