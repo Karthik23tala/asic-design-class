@@ -52,9 +52,9 @@ The ORFS flow involves the following stages:
 8. **GDSII Generation**  
    Generate the final chip layout in GDSII format with tools like Magic and KLayout.
 
-[OpenRoad Official Documentation]([url](https://theopenroadproject.org/))
+[OpenROAD Official Documentation](https://theopenroadproject.org/)
 
-Cloning the  dependacy Github repo and building:
+Cloning the  dependacy Github repo:
 
 ```
 git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
@@ -62,8 +62,18 @@ cd OpenROAD-flow-scripts
 sudo ./setup.sh
 ```
 
+Building:
+
 ```
 ./build_openroad.sh --local
+```
+
+Verifying the installation:
+
+```
+cd flow
+make
+make gui_final
 ```
 
 Terminal Screenshots:
