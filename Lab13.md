@@ -145,7 +145,7 @@ Synthesis Check:
 
 Synthesis Stats:
 
-![image](https://github.com/user-attachments/assets/d08ac606-6b03-4753-b1f4-da5d01acff01)
+![image](https://github.com/user-attachments/assets/6ec050f7-47d0-44d0-ae44-4fc90b5b0dfb)
 
 ![image](https://github.com/user-attachments/assets/0430ee6d-d708-435c-9af0-792866cef180)
 
