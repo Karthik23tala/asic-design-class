@@ -266,11 +266,11 @@ Command to view the floorplanning:
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_floorplan
 ```
 
-![image](https://github.com/user-attachments/assets/ffff701e-bf1f-4fde-9e1a-fd18fe0b4697)
+![image](https://github.com/user-attachments/assets/7563bdab-1743-45f0-8d61-5b977735e1aa)
 
-![image](https://github.com/user-attachments/assets/567cd124-aab7-4e61-98b7-3c96423b8898)
+![image](https://github.com/user-attachments/assets/48ea0abf-1ff7-4879-9192-8d3fda5388b5)
 
-![image](https://github.com/user-attachments/assets/fe4a347f-6e50-4693-bfc7-b5974147d842)
+![image](https://github.com/user-attachments/assets/32da2071-9b15-47c7-931b-b95b7da4517a)
 
 Command for Placement:
 
