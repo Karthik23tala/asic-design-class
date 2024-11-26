@@ -5240,14 +5240,6 @@ make gui_cts
 
 ![image](https://github.com/user-attachments/assets/0df60fd1-343b-41be-b29d-710681af3b22)
 
-Clock Tree Synthesis Screenshots:
-
-![image](https://github.com/user-attachments/assets/8350e52b-d971-4691-af55-b70207f42172)
-
-![image](https://github.com/user-attachments/assets/f4de6fca-7d29-4ac8-8148-3a6d80a3c563)
-
-![image](https://github.com/user-attachments/assets/ccdc7a5c-33a2-49b1-a8fa-de67c3fbdbb5)
-
 Final Layout Commands:
 
 ```
