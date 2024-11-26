@@ -672,3 +672,9 @@ make gui_route
 6. IR Drop
 
 ![6](https://github.com/user-attachments/assets/35de6190-d8fe-4617-b288-bb9b9c5ecc5a)
+
+**QoR Report**
+
+![image](https://github.com/user-attachments/assets/597095c9-f845-45ef-b172-89033df10ec2)
+
+![image](https://github.com/user-attachments/assets/c4a781ab-fd36-465b-8f35-dcc76913e287)
