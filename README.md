@@ -1,4 +1,4 @@
-![Screenshot 2024-11-26 124917](https://github.com/user-attachments/assets/09e0e7e8-a88f-45be-8cd2-ff003fc3e95f)# ASIC Design 
+# ASIC Design 
 
 <tr></tr>
 
