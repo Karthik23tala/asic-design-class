@@ -1,4 +1,4 @@
-# ASIC Design 
+![Screenshot 2024-11-26 124917](https://github.com/user-attachments/assets/09e0e7e8-a88f-45be-8cd2-ff003fc3e95f)# ASIC Design 
 
 <tr></tr>
 
@@ -5286,5 +5286,30 @@ make gui_route
 
 ![image](https://github.com/user-attachments/assets/a554b4cb-4d24-4363-bcba-eec33d7c08a5)
 
+**HeatMap Images**
+
+1. VSDBabySoc
+
+![1](https://github.com/user-attachments/assets/138289f3-9b34-4545-8e07-1aa8d8d1d216)
+
+2. Power
+
+![2](https://github.com/user-attachments/assets/8e19b1e8-af50-40be-9b6d-8cc263ec9a72)
+
+3. Estimated Congestion
+
+![3](https://github.com/user-attachments/assets/6634fc26-d406-4be0-9329-bc2e5c69ea53)
+
+4. Routing Congestion
+
+![4](https://github.com/user-attachments/assets/ba076b73-2549-495e-aef5-5d1ced8a5b20)
+
+5. Placement
+
+![5](https://github.com/user-attachments/assets/8c289429-343a-4947-93ef-b7375b734377)
+
+6. IR Drop
+
+![6](https://github.com/user-attachments/assets/35de6190-d8fe-4617-b288-bb9b9c5ecc5a)
 
 </details>
